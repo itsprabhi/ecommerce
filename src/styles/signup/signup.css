@@ -1,0 +1,17 @@
+.signup-form {
+  width: 60%;
+  margin: 50px auto;
+}
+
+.signup-form input[type=password], .signup-form input[type=email] {
+  width: 100%;
+  height: 30px;
+  margin: 20px auto;
+}
+
+.helper-text {
+  color: red;
+  margin: 0;
+  font-size: 10px;
+}
+/*# sourceMappingURL=signup.css.map */

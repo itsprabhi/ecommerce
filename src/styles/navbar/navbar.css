@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap");
+.navbar {
+  width: 100%;
+  background: #FF3B3F;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  font-family: 'Lato', sans-serif;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar div {
+  width: 30%;
+}
+
+.navbar .navbar-brand {
+  text-align: left;
+}
+
+.navbar .navbar-brand a {
+  margin: auto 15px;
+  padding: 10px 15px;
+}
+
+.navbar .navbar-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.navbar .navbar-list ul {
+  list-style: none;
+}
+
+.navbar .navbar-list li {
+  display: inline-block;
+  margin: auto 15px;
+  padding: 10px 15px;
+}
+
+.navbar .navbar-profile {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+/*# sourceMappingURL=navbar.css.map */

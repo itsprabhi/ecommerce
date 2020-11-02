@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAEI,eAFW,CAEX,eAAe,CAAA;EACX,UAAU,EAAE,MAAM;CACrB",
+    "sources": [
+        "signupPage.scss"
+    ],
+    "names": [],
+    "file": "signupPage.css"
+}
