@@ -3,7 +3,7 @@
   margin: 50px auto;
 }
 
-.signup-form input[type=password], .signup-form input[type=email] {
+.signup-form input[type=password], .signup-form input[type=text], .signup-form input[type=email] {
   width: 100%;
   height: 30px;
   margin: 20px auto;

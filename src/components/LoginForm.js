@@ -25,7 +25,7 @@ function SignupForm(props) {
     
 
     const onSubmit = () => {
-        console.log(user)
+        
         setUser({
             ...user,
             loading: true
@@ -37,9 +37,9 @@ function SignupForm(props) {
         }
         axios.post('/login',newUser)
         .then(res => {
-            console.log(res.data)
             setUser({loading:false})
-            history.push('/')
+            localStorage.setItem('FBIToken',`Bearer ${res.data.token}`)
+            history.push('/user')
         })
         .catch(err => {
             if(!err.response){
@@ -57,6 +57,8 @@ function SignupForm(props) {
     let emailHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.userEmail}</span>) : null
     let passwordHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.password}</span>) : null
     let errorHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.error}</span>) : null
+
+    
     return (
         
         <div>

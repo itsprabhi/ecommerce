@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
-// import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 
 function SignupForm(props) {
+
+    const history = useHistory()
 
     const [user, setUser] = useState({
         userName:'',
@@ -11,7 +13,6 @@ function SignupForm(props) {
         userPassword:'',
         userConfirmPassword:'',
         userHandle:'',
-        errors:{},
         loading:false
     })
 
@@ -38,27 +39,41 @@ function SignupForm(props) {
         }
         axios.post('/signup',newUser)
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             setUser({loading:false})
-            // useHistory.
+            localStorage.setItem('FBIToken',`Bearer ${res.data.token}`)
+            history.push('/user')
         })
         .catch(err => {
-            console.log(err)
+            console.log(err.response.data)
             setUser({
                 ...user,
                 loading:false,
-                errors: err.response.data.errors
+                errors: err.response.data
             })
         })
     } 
+
+    let nameHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.userName}</span>) : null
+    let passwordHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.password}</span>) : null
+    let errorHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.error}</span>) : null
+    let emailHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.userEmail}</span>) : null
+    let handleHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.userHandle}</span>) : null
+    let confirmPasswordHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.userConfirmPassword}</span>) : null
+   
     return (
         <div>
             <div className = 'signup-form'>
-                <input type = 'text' name = 'userName' placeholder = 'Enter your name' onChange = {onHandleChange} />
-                <input type = 'email' name = 'userEmail' placeholder = 'Enter your email' onChange = {onHandleChange} />
-                <input type = 'password' name = 'userPassword' placeholder = 'Enter your password' onChange = {onHandleChange} />
-                <input type = 'password' name = 'userConfirmPassword' placeholder = 'Confirm your password' onChange = {onHandleChange} />
-                <input type = 'text' name = 'userHandle' placeholder = 'Enter your username' onChange = {onHandleChange} />
+                <input type = 'text' name = 'userName' placeholder = 'Enter your name' onChange = {onHandleChange} /><br />
+                {nameHelper} <br />
+                <input type = 'email' name = 'userEmail' placeholder = 'Enter your email' onChange = {onHandleChange} /> <br />
+                {emailHelper} <br />
+                <input type = 'password' name = 'userPassword' placeholder = 'Enter your password' onChange = {onHandleChange} /> <br />
+                {passwordHelper} <br />
+                <input type = 'password' name = 'userConfirmPassword' placeholder = 'Confirm your password' onChange = {onHandleChange} /> <br />
+                {confirmPasswordHelper} <br />
+                <input type = 'text' name = 'userHandle' placeholder = 'Enter your username' onChange = {onHandleChange} /> <br />
+                {handleHelper} <br/>
                 <button className = 'primary-btn' onClick = {onSubmit}>
                     Sign Up!
                 </button>

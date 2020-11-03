@@ -1,5 +1,5 @@
 import React from 'react';
-
+import jwtDecode from 'jwt-decode'
 import './App.css';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
@@ -13,6 +13,21 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import UserProfile from './pages/UserProfile';
 import About from './pages/About';
+import AuthRoute from './utils/authRoute';
+import UserRoute from './utils/userRoute';
+
+let authenticated
+const token = localStorage.FBIToken
+console.log(token)
+if(token){
+  const decodedToken = jwtDecode(token);
+  if(decodedToken.exp * 1000 < Date.now()){
+    authenticated = false;
+  }else{
+    console.log(token)
+    authenticated = true
+  }
+}
 
 function App() {
   return (
@@ -23,8 +38,9 @@ function App() {
           <Route exact path = '/' component = {Home} />
           <Route exact path = '/shop' component = {Shop} />
           {/* <Route exact path = '/user/profile' component = {UserProfile} /> */}
-          <Route exact path = '/login' component = {Login} />
-          {/* <Route exact path = '/signup' component = {Signup} /> */}
+          <AuthRoute exact path = '/login' component = {Login} authenticated = {authenticated}/>
+          <AuthRoute exact path = '/signup' component = {Signup}  authenticated = {authenticated} />
+          <UserRoute exact path = '/user' component = {UserProfile}  authenticated = {authenticated} />
           <Route exact path = '/about' component = {About} />
         </Switch>
       </Router>
