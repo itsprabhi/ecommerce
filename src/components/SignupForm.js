@@ -39,9 +39,8 @@ function SignupForm(props) {
         }
         axios.post('/signup',newUser)
         .then(res => {
-            // console.log(res.data)
             setUser({loading:false})
-            localStorage.setItem('FBIToken',`Bearer ${res.data.token}`)
+            localStorage.setItem('FBIToken',`Bearer ${res.data.token}`) 
             history.push('/user')
         })
         .catch(err => {
@@ -53,6 +52,8 @@ function SignupForm(props) {
             })
         })
     } 
+
+    // Helper Text for form
 
     let nameHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.userName}</span>) : null
     let passwordHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.password}</span>) : null

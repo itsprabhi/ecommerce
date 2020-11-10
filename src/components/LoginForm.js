@@ -39,7 +39,7 @@ function SignupForm(props) {
         .then(res => {
             setUser({loading:false})
             localStorage.setItem('FBIToken',`Bearer ${res.data.token}`)
-            history.push('/user')
+            history.push('/')
         })
         .catch(err => {
             if(!err.response){
@@ -53,7 +53,7 @@ function SignupForm(props) {
         })
     } 
 
-    
+    // helper text for form
     let emailHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.userEmail}</span>) : null
     let passwordHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.password}</span>) : null
     let errorHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.error}</span>) : null
@@ -69,7 +69,7 @@ function SignupForm(props) {
                 <label>Enter your Password</label> 
                 <input type = 'password' name = 'userPassword' placeholder = '********' onChange = {onHandleChange} /> <br />
                 {passwordHelper} <br />
-                {errorHelper}
+                {errorHelper} <br />
                 <button className = 'primary-btn' onClick = {onSubmit}>
                     Log In!
                 </button>
