@@ -1,25 +1,32 @@
 import React, {useState,useEffect} from 'react'
 import axios from 'axios'
-
+import ProductCard from '../components/ProductCard'
+import '../styles/product/product.css'
 
 function Shop() {
 
-    const [products, setProducts] = useState(false)
+    const [products, setProducts] = useState([])
 
     useEffect(() => {
-        console.log('i fire once')
+
         axios.get('/products')
         .then(data => {
             setProducts(data.data)
-            
         })
         .catch(err => {
             console.log(err)
         })
     }, [])
+
+
     return (
-        <div>
+        <div className = 'shop-section'>
             
+            {products.map(product => {
+                return (
+                <ProductCard product = {product} />
+                )
+            })}
         </div>
     )
 }

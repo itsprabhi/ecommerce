@@ -17,11 +17,12 @@ import About from './pages/About';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import UserProfile from './pages/UserProfile';
+import Product from './pages/Product';
 
 // AUTHENTICATE USER
 let authenticated
 const token = localStorage.FBIToken
-console.log(token)
+// console.log(token)
 if(token){
   const decodedToken = jwtDecode(token);
   if(decodedToken.exp * 1000 < Date.now()){
@@ -40,6 +41,7 @@ function App() {
         <Switch>
           <Route exact path = '/' component = {Home} />
           <Route exact path = '/shop' component = {Shop} />
+          <Route exact path = '/shop/product/:id' component = {(props) => <Product {...props} />} />
           <AuthRoute exact path = '/login' component = {Login} authenticated = {authenticated}/>
           <AuthRoute exact path = '/signup' component = {Signup}  authenticated = {authenticated} />
           <UserRoute exact path = '/user' component = {UserProfile}  authenticated = {authenticated} />

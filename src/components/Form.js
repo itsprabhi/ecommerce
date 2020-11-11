@@ -1,4 +1,3 @@
-import { getByText } from '@testing-library/react'
 import React from 'react'
 import textAction from '../actions/textAction'
 import {useDispatch} from 'react-redux'
