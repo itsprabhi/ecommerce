@@ -3,21 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import subtractReducer from './reducers/subtractReucer';
-import allReducers from './reducers/indexReducers'
+import store from './redux/store'
 
-const initialState = {}
-const shopStore = createStore(
-  allReducers,
-  initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+
  
 
 ReactDOM.render(
-  <Provider store = {shopStore}>
+  <Provider store = {store}>
   <React.StrictMode>
     <App />
   </React.StrictMode>

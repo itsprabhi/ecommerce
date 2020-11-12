@@ -1,7 +1,7 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode'
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import './App.css';
+import './styles/global/global.css';
 
 // UTILS
 import AuthRoute from './utils/authRoute';

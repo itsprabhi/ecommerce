@@ -1,10 +1,8 @@
-import React, {useState} from 'react'
-// import { useHistory } from 'react-router'
-import axios from 'axios'
+import React, {useEffect, useState} from 'react'
 import '../styles/signup/signup.css'
 import {useHistory} from 'react-router-dom'
-
-
+import { connect } from 'react-redux'
+import { loginUser } from '../redux/actions/userActions'
 
 function SignupForm(props) {
 
@@ -12,9 +10,22 @@ function SignupForm(props) {
 
     const [user, setUser] = useState({
         userEmail:'',
-        userPassword:'',
-        loading:false
+        userPassword:''
     })
+
+    
+    useEffect(() => {
+        console.log(props.ui)
+        if(props.ui.errors){
+            setUser({
+                ...user,
+                errors: props.ui.errors
+            })
+        }
+    }, [props.ui])
+        
+    
+    
 
     const onHandleChange = (e) => {
         setUser({
@@ -25,38 +36,18 @@ function SignupForm(props) {
     
 
     const onSubmit = () => {
-        
-        setUser({
-            ...user,
-            loading: true
-        })
-        const { userName, userEmail, userPassword, userConfirmPassword, userHandle } = user
-        const newUser = {
+        const { userEmail, userPassword } = user
+        const userData = {
             userEmail,
             userPassword
         }
-        axios.post('/login',newUser)
-        .then(res => {
-            setUser({loading:false})
-            localStorage.setItem('FBIToken',`Bearer ${res.data.token}`)
-            history.push('/')
-        })
-        .catch(err => {
-            if(!err.response){
-                return
-            }
-            setUser({
-                ...user,
-                loading:false,
-                errors: err.response.data
-            })
-        })
+        props.loginUser(userData, history) // we can pass it as props becuase we did mapActionsToProps below 
     } 
 
     // helper text for form
-    let emailHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.userEmail}</span>) : null
-    let passwordHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.password}</span>) : null
-    let errorHelper = user.errors ? ( <span class = 'helper-text'>{user.errors.error}</span>) : null
+    let emailHelper = user.errors ? ( <span className = 'helper-text'>{user.errors.userEmail}</span>) : null
+    let passwordHelper = user.errors ? ( <span className = 'helper-text'>{user.errors.password}</span>) : null
+    let errorHelper = user.errors ? ( <span className = 'helper-text'>{user.errors.error}</span>) : null
 
     
     return (
@@ -78,4 +69,16 @@ function SignupForm(props) {
     )
 }
 
-export default SignupForm
+
+// it puts the global state to props of the component
+const mapStateToProps = (state) => ({
+    user: state.user,
+    ui: state.ui
+})
+
+//it puts the actions to props
+const mapActionsToProps = {
+    loginUser
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(SignupForm)
