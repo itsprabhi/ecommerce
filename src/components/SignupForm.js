@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
-import axios from 'axios'
-
+import {signupUser} from '../redux/actions/userActions'
+import { connect } from 'react-redux'
 
 function SignupForm(props) {
 
@@ -13,8 +13,18 @@ function SignupForm(props) {
         userPassword:'',
         userConfirmPassword:'',
         userHandle:'',
-        loading:false
+        errors: {}
     })
+
+    useEffect(() => {
+        console.log(props.ui)
+        if(props.ui.errors){
+            setUser({
+                ...user,
+                errors: props.ui.errors
+            })
+        }
+    }, [props.ui])
 
     const onHandleChange = (e) => {
         setUser({
@@ -24,11 +34,6 @@ function SignupForm(props) {
     }
 
     const onSubmit = () => {
-        console.log(user)
-        setUser({
-            ...user,
-            loading: true
-        })
         const { userName, userEmail, userPassword, userConfirmPassword, userHandle } = user
         const newUser = {
             userName,
@@ -37,20 +42,7 @@ function SignupForm(props) {
             userConfirmPassword,
             userHandle
         }
-        axios.post('/signup',newUser)
-        .then(res => {
-            setUser({loading:false})
-            localStorage.setItem('FBIToken',`Bearer ${res.data.token}`) 
-            history.push('/user')
-        })
-        .catch(err => {
-            console.log(err.response.data)
-            setUser({
-                ...user,
-                loading:false,
-                errors: err.response.data
-            })
-        })
+        props.signupUser(newUser, history)
     } 
 
     // Helper Text for form
@@ -75,6 +67,7 @@ function SignupForm(props) {
                 {confirmPasswordHelper} <br />
                 <input type = 'text' name = 'userHandle' placeholder = 'Enter your username' onChange = {onHandleChange} /> <br />
                 {handleHelper} <br/>
+                {errorHelper} <br />
                 <button className = 'primary-btn' onClick = {onSubmit}>
                     Sign Up!
                 </button>
@@ -83,4 +76,17 @@ function SignupForm(props) {
     )
 }
 
-export default SignupForm
+
+// it puts the global state to props of the component
+const mapStateToProps = (state) => ({
+    user: state.user,
+    ui: state.ui
+})
+
+//it puts the actions to props
+const mapActionsToProps = {
+    signupUser
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(SignupForm)
+

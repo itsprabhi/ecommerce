@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loginUser } from '../redux/actions/userActions'
 
-function SignupForm(props) {
+function LoginForm(props) {
 
     const history = useHistory()
 
@@ -81,4 +81,4 @@ const mapActionsToProps = {
     loginUser
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(SignupForm)
+export default connect(mapStateToProps, mapActionsToProps)(LoginForm)

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-// import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const UserRoute = ({ component: Component, authenticated, ...rest }) => (
   <Route
@@ -12,12 +12,14 @@ const UserRoute = ({ component: Component, authenticated, ...rest }) => (
   />
 );
 
-// const mapStateToProps = (state) => ({
-//   authenticated: state.user.authenticated
-// });
+const mapStateToProps = (state) => ({
+  authenticated: state.user.authenticated
+});
 
-// UserRoute.propTypes = {
-//   user: PropTypes.object
-// };
+UserRoute.propTypes = {
+  user: PropTypes.object
+};
 
-export default UserRoute;
+
+
+export default connect(mapStateToProps)(UserRoute);
