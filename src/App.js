@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import jwtDecode from 'jwt-decode'
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import './styles/global/global.css';
@@ -31,21 +31,32 @@ import store from './redux/store'
 
 // AUTHENTICATE USER
 
-const token = localStorage.FBIToken
-if(token){
-  const decodedToken = jwtDecode(token);
-  if(decodedToken.exp * 1000 < Date.now()){
-    store.dispatch(logoutUser())
-  }else{
-    store.dispatch({ type: SET_AUTHENTICATED})
-    axios.defaults.headers.common['Authorization'] = token
-    store.dispatch(getUserData())
-  }
-}
- 
-
+let authenticated;
 
 function App() {
+  
+  useEffect(() => {
+    let csrfToken;
+    axios.get('/csrfToken')
+    .then(data => {
+      csrfToken = data.data.csrfToken
+      axios.defaults.headers['X-CSRF-Token'] = csrfToken
+    })
+  },[])
+
+  useEffect(() => {
+    console.log(`use effect`)
+    axios.get('/checkUser')
+    .then(res => {
+      if(res.data.authenticated){
+        authenticated = res.data.authenticated
+        store.dispatch({ type: SET_AUTHENTICATED})
+        store.dispatch(getUserData())
+      }
+    })
+    .catch(err => console.log(err))
+  })
+
   return (
     <Provider store = {store}>
     <div className="App">
@@ -55,9 +66,9 @@ function App() {
           <Route exact path = '/' component = {Home} />
           <Route exact path = '/shop' component = {Shop} />
           <Route exact path = '/shop/product/:id' component = {(props) => <Product {...props} />} />
-          <AuthRoute exact path = '/login' component = {Login}/>
-          <AuthRoute exact path = '/signup' component = {Signup}  />
-          <UserRoute exact path = '/user' component = {UserProfile}  />
+          <AuthRoute exact path = '/login' authenticated = {authenticated} component = {Login}/>
+          <AuthRoute exact path = '/signup' authenticated = {authenticated} component = {Signup}  />
+          <Route exact path = '/user' component = {UserProfile}  />
           <Route exact path = '/about' component = {About} />
         </Switch>
       </Router>
