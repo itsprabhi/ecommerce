@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import jwtDecode from 'jwt-decode'
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import './styles/global/global.css';
 import axios from 'axios';
@@ -28,6 +27,7 @@ import {SET_AUTHENTICATED } from './redux/types'
 import {logoutUser, getUserData} from './redux/actions/userActions'
 import { Provider } from 'react-redux'
 import store from './redux/store'
+import CreateProduct from './pages/CreateProduct';
 
 // AUTHENTICATE USER
 
@@ -52,6 +52,7 @@ function App() {
         authenticated = res.data.authenticated
         store.dispatch({ type: SET_AUTHENTICATED})
         store.dispatch(getUserData())
+        console.log(authenticated)
       }
     })
     .catch(err => console.log(err))
@@ -68,7 +69,8 @@ function App() {
           <Route exact path = '/shop/product/:id' component = {(props) => <Product {...props} />} />
           <AuthRoute exact path = '/login' authenticated = {authenticated} component = {Login}/>
           <AuthRoute exact path = '/signup' authenticated = {authenticated} component = {Signup}  />
-          <Route exact path = '/user' component = {UserProfile}  />
+          <Route exact path = '/admin/create/product' authenticated = {authenticated} component = {CreateProduct}  />
+          <UserRoute exact path = '/user' component = {UserProfile}  />
           <Route exact path = '/about' component = {About} />
         </Switch>
       </Router>
