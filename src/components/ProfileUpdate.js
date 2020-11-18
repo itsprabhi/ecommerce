@@ -1,9 +1,13 @@
+
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 
-function ProfileUpdate() {
+import '../styles/user/user.css'
 
-    
+function ProfileUpdate(props) {
+    console.log(props.user.credentials)
+    // deconstructing credentials
+    const { userName, userHandle, imageUrl, userEmail} = props.user.credentials
 
     const [data, setData] = useState([])
 
@@ -26,11 +30,21 @@ function ProfileUpdate() {
         console.log(data)
     }, [data])
     return (
-        <div>
+        <div className = 'profile'>
+            
+            <div className = 'profile-img'>
+                <img src = {imageUrl} alt = 'profile pic' />
+            </div>
+            <h4>@{userHandle}</h4>
+            <h4>Name: {userName}</h4>
+            <h4>Email: {userEmail}</h4>
+            
             <input type = 'file' name = 'images' accept="image/jpeg, image/png" onChange = {handleChange}></input>
             <button onClick = {handleSubmit}>Submit</button>
         </div>
     )
 }
+
+
 
 export default ProfileUpdate

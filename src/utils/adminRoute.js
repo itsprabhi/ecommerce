@@ -1,25 +1,25 @@
-// import React from 'react';
-// import { Route, Redirect } from 'react-router-dom';
-// import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-// const UserRoute = ({ component: Component, isAdmin, authenticated, ...rest }) => (
-//   <Route
-//     {...rest}
-//     render={(props) =>
-//       authenticated === true && isAdmin === true ? <Component {...props} /> : <Redirect to="/login" />
-//     }
-//   />
-// );
+const AdminRoute = ({ component: Component, isAdmin, authenticated, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+       isAdmin === true ? <Component {...props} /> : <Redirect to="/" />
+    }
+  />
+);
 
-// const mapStateToProps = (state) => ({
-//   authenticated: state.user.authenticated
-// });
+const mapStateToProps = (state) => ({
+  isAdmin: state.user.credentials.isAdmin
+});
 
-// UserRoute.propTypes = {
-//   user: PropTypes.object
-// };
+AdminRoute.propTypes = {
+  user: PropTypes.object
+};
 
 
 
-// export default connect(mapStateToProps)(UserRoute);
+export default connect(mapStateToProps)(AdminRoute);

@@ -2,7 +2,8 @@ import {SET_USER, LOADING_UI, SET_ERRORS, CLEAR_ERRORS, SET_AUTHENTICATED, SET_U
 
 const initialState = {
     authenticated:false,
-    orders: []
+    orders: [],
+    credentials:{}
 }
 
 export default (state = initialState, action) => {
@@ -17,7 +18,8 @@ export default (state = initialState, action) => {
         case SET_USER:
             return {
                 ...state,
-                ...action.payload
+                credentials:{...action.payload.crendentials},
+                orders:[...action.payload.orders]
             }
         default:{
             return state;

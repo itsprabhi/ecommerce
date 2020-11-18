@@ -1,5 +1,6 @@
 import {SET_USER, LOADING_UI, SET_ERRORS, CLEAR_ERRORS, SET_AUTHENTICATED, SET_UNAUTHENTICATED} from '../types'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 export const loginUser = (userData, history) => (dispatch) => {
     dispatch({type: LOADING_UI})
@@ -28,7 +29,9 @@ export const loginUser = (userData, history) => (dispatch) => {
 }
 
 export const logoutUser = () => (dispatch) => {
-    localStorage.removeItem('FBIToken')
+    axios.get('/logout').then(res => {
+        console.log(res.data)
+    }) 
     delete axios.defaults.headers.common['Authorization']
     dispatch({ type: SET_UNAUTHENTICATED})
 }

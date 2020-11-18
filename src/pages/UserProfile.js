@@ -4,21 +4,14 @@ import {useDispatch} from 'react-redux'
 import { connect } from 'react-redux'
 import Proptypes from 'prop-types'
 import axios from 'axios'
+import ProfileUpdate from '../components/ProfileUpdate'
+import OrderList from '../components/OrderList'
 
-function UserProfile() {
-    const dispatch = useDispatch()
-    useEffect(() => {
-        axios.get('/user').then(res => {
-            console.log(res.data)
-        })
-    })
+function UserProfile(props) {
     return (
-        <div>
-            This is user profile
-
-            <button onClick = {() => dispatch({type: SET_UNAUTHENTICATED})}>
-                Log Out
-            </button>
+        <div className = 'profile-page'>
+            <ProfileUpdate user = {props.user}/>
+            <OrderList orders = {props.orders}/>
         </div>
     )
 }
@@ -28,7 +21,8 @@ UserProfile.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.user
+    user: state.user,
+    orders: state.user.orders
 })
 
 export default connect(mapStateToProps)(UserProfile)

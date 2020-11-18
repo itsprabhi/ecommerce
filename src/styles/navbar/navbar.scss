@@ -47,6 +47,42 @@ $primary_color: #FF3B3F;
     }
 
     .navbar-profile{
+        display: flex;
         justify-content: flex-end;
     }
+}
+
+.nav-profile{
+    position: relative;
+    ul{
+        position: absolute;
+        width: 100%;
+        top:0px;
+        left: -50%;
+        background: $primary_color;
+        display: none;
+        list-style: none;
+    }
+    li{
+        margin: 30% auto;
+    }
+    ul:hover{
+        display: block;
+    }
+}
+.navbar-list:hover, .navbar-profile:hover{
+    ul{
+        display: block;
+    }
+}
+
+.nav-btn-list{
+    border:2px solid #fff;
+    padding: 8px 10px;
+    border-radius: 50%;
+    font-size: 15px;
+}
+.nav-btn{
+    background:$primary_color;
+    color: white;
 }

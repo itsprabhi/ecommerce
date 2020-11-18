@@ -5,8 +5,9 @@ import ProfileUpdate from '../components/ProfileUpdate'
 function CreateProduct() {
     return (
         <div>
-            <ImageUpload />
-            <ProfileUpdate />
+            {/* <ImageUpload />
+            <ProfileUpdate /> */}
+            create product
         </div>
     )
 }

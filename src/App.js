@@ -25,15 +25,18 @@ import Product from './pages/Product';
 // REDUX
 import {SET_AUTHENTICATED } from './redux/types'
 import {logoutUser, getUserData} from './redux/actions/userActions'
-import { Provider } from 'react-redux'
+import {connect} from 'react-redux'
 import store from './redux/store'
 import CreateProduct from './pages/CreateProduct';
+import Admin from './pages/Admin';
+import AdminRoute from './utils/AdminRoute';
 
 // AUTHENTICATE USER
 
-let authenticated;
 
-function App() {
+
+function App(props) {
+
   
   useEffect(() => {
     let csrfToken;
@@ -49,34 +52,36 @@ function App() {
     axios.get('/checkUser')
     .then(res => {
       if(res.data.authenticated){
-        authenticated = res.data.authenticated
         store.dispatch({ type: SET_AUTHENTICATED})
         store.dispatch(getUserData())
-        console.log(authenticated)
       }
     })
     .catch(err => console.log(err))
   })
 
   return (
-    <Provider store = {store}>
+    
     <div className="App">
       <Router>
-        <Navbar />
+        <Navbar/>
         <Switch>
           <Route exact path = '/' component = {Home} />
           <Route exact path = '/shop' component = {Shop} />
           <Route exact path = '/shop/product/:id' component = {(props) => <Product {...props} />} />
-          <AuthRoute exact path = '/login' authenticated = {authenticated} component = {Login}/>
-          <AuthRoute exact path = '/signup' authenticated = {authenticated} component = {Signup}  />
-          <Route exact path = '/admin/create/product' authenticated = {authenticated} component = {CreateProduct}  />
+          <AuthRoute exact path = '/login' component = {Login}/>
+          <AuthRoute exact path = '/signup' component = {Signup}  />
+          <AdminRoute exact path = '/admin/create/product' component = {CreateProduct}  />
+          <AdminRoute exact path = '/admin' component = {Admin}  />
           <UserRoute exact path = '/user' component = {UserProfile}  />
           <Route exact path = '/about' component = {About} />
         </Switch>
       </Router>
     </div>
-    </Provider>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  authenticated: state.user.authenticated
+})
+
+export default connect(mapStateToProps)(App);

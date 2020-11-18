@@ -53,8 +53,49 @@
 }
 
 .navbar .navbar-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+}
+
+.nav-profile {
+  position: relative;
+}
+
+.nav-profile ul {
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  left: -50%;
+  background: #FF3B3F;
+  display: none;
+  list-style: none;
+}
+
+.nav-profile li {
+  margin: 30% auto;
+}
+
+.nav-profile ul:hover {
+  display: block;
+}
+
+.navbar-list:hover ul, .navbar-profile:hover ul {
+  display: block;
+}
+
+.nav-btn-list {
+  border: 2px solid #fff;
+  padding: 8px 10px;
+  border-radius: 50%;
+  font-size: 15px;
+}
+
+.nav-btn {
+  background: #FF3B3F;
+  color: white;
 }
 /*# sourceMappingURL=navbar.css.map */
