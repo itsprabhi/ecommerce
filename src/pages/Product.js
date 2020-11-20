@@ -4,7 +4,17 @@ import axios from 'axios'
 function Product(props) {
     const id = props.match.params.id
 
-    const [product, setProduct] = useState([])
+    const [product, setProduct] = useState({
+        productCreatedAt: '',
+        productDetails: '',
+        productFeatures: "",
+        productName: "",
+        productPictures:[],
+        productPrice: "",
+        productSaleOn: "",
+        productSalePrice: "",
+        productType: ""
+    })
 
     useEffect(() => {
 
@@ -25,7 +35,7 @@ function Product(props) {
         <div className = 'product-page'>
             <div className = 'product-main'>
                 <div className = 'product-main-img'>
-                    <img src = {productPictures} alt = '' />
+                    <img src = {productPictures[0]} alt = '' />
                 </div>
                 <div className = 'product-main-content'>
                     <h1>

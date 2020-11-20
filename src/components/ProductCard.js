@@ -7,6 +7,9 @@ function ProductCard(props) {
     if (!typeof productPictures === Array){
         productPictures = ['https://firebasestorage.googleapis.com/v0/b/aus-ecommerce.appspot.com/o/defaultProfilePicture.jpg?alt=media']
     }
+
+    
+
     return (
         <div>
             <div className = 'product-card'>

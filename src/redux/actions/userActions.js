@@ -40,13 +40,16 @@ export const signupUser = (newUser, history) => (dispatch) => {
     dispatch({type: LOADING_UI})
     axios.post('/signup', newUser)
     .then(res => {
-        const FBIToken = `Bearer ${res.data.token}`
-        localStorage.setItem('FBIToken', FBIToken)
-        axios.defaults.headers.common['Authorization'] = FBIToken; //setting the token to default axios requests
-        dispatch({type: SET_AUTHENTICATED})
+        const token = {idToken: res.data.token}
+        console.log(token)
+        axios.post('/sessionLogin', token)
+        .then(res => {
+            console.log(res.data);
+            dispatch({type: SET_AUTHENTICATED})
         dispatch(getUserData())
         dispatch({ type: CLEAR_ERRORS })
         history.push('/')
+        })
     })
     .catch(err => {
         if(!err.response){

@@ -7,7 +7,7 @@ import '../styles/user/user.css'
 function ProfileUpdate(props) {
     console.log(props.user.credentials)
     // deconstructing credentials
-    const { userName, userHandle, imageUrl, userEmail} = props.user.credentials
+    const { userName, userHandle, profilePicture, userEmail} = props.user.credentials
 
     const [data, setData] = useState([])
 
@@ -33,7 +33,7 @@ function ProfileUpdate(props) {
         <div className = 'profile'>
             
             <div className = 'profile-img'>
-                <img src = {imageUrl} alt = 'profile pic' />
+                <img src = {profilePicture} alt = 'profile pic' />
             </div>
             <h4>@{userHandle}</h4>
             <h4>Name: {userName}</h4>
