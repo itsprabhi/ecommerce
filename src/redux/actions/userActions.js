@@ -1,6 +1,5 @@
-import {SET_USER, LOADING_UI, SET_ERRORS, CLEAR_ERRORS, SET_AUTHENTICATED, SET_UNAUTHENTICATED} from '../types'
+import {SET_USER, LOADING_UI, SET_ERRORS, CLEAR_ERRORS, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER} from '../types'
 import axios from 'axios'
-import Cookies from 'js-cookie'
 
 export const loginUser = (userData, history) => (dispatch) => {
     dispatch({type: LOADING_UI})
@@ -32,8 +31,11 @@ export const logoutUser = () => (dispatch) => {
     axios.get('/logout').then(res => {
         console.log(res.data)
     }) 
-    delete axios.defaults.headers.common['Authorization']
-    dispatch({ type: SET_UNAUTHENTICATED})
+    .then(() => {
+        delete axios.defaults.headers.common['Authorization']
+        dispatch({ type: SET_UNAUTHENTICATED })
+    })
+    .catch(err => console.log(err))
 }
 
 export const signupUser = (newUser, history) => (dispatch) => {
@@ -64,6 +66,7 @@ export const signupUser = (newUser, history) => (dispatch) => {
 
 
 export const getUserData = () => (dispatch) => {
+    dispatch({type:LOADING_USER})
     axios.get('/user')
     .then(res => {
         dispatch({ 

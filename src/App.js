@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import './styles/global/global.css';
 import axios from 'axios';
-
+import Cookie from 'js-cookie'
 
 // UTILS
 import AuthRoute from './utils/authRoute';
@@ -23,7 +23,7 @@ import Product from './pages/Product';
 
 
 // REDUX
-import {SET_AUTHENTICATED } from './redux/types'
+import {SET_AUTHENTICATED, SET_UNAUTHENTICATED } from './redux/types'
 import {logoutUser, getUserData} from './redux/actions/userActions'
 import {connect} from 'react-redux'
 import store from './redux/store'
@@ -48,12 +48,13 @@ function App(props) {
   },[])
 
   useEffect(() => {
-    console.log(`use effect`)
     axios.get('/checkUser')
     .then(res => {
       if(res.data.authenticated){
         store.dispatch({ type: SET_AUTHENTICATED})
         store.dispatch(getUserData())
+      }else{
+        store.dispatch({type: SET_UNAUTHENTICATED})
       }
     })
     .catch(err => console.log(err))
@@ -68,6 +69,7 @@ function App(props) {
           <Route exact path = '/' component = {Home} />
           <Route exact path = '/shop' component = {Shop} />
           <Route exact path = '/shop/product/:id' component = {(props) => <Product {...props} />} />
+          <Route exact path = '/shop/:option/:id' component = {(props) => <Shop {...props} />} />
           <AuthRoute exact path = '/login' component = {Login}/>
           <AuthRoute exact path = '/signup' component = {Signup}  />
           <AdminRoute exact path = '/admin/create/product' component = {CreateProduct}  />

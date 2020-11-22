@@ -15,7 +15,7 @@ function Navbar(props) {
     const onLogOut = () => {
         store.dispatch(logoutUser())
     }
-
+        
     const adminBtn = props.isAdmin ? (
         <Link to = '/admin'>
             <li>
@@ -55,6 +55,17 @@ function Navbar(props) {
             </Link>
         </ul>
     )
+
+    const navbarProfile = props.loading ? (<>Loading...</>) : (
+        <div className = 'nav-profile'>
+        <button className = 'nav-btn nav-btn-list'>
+            <FontAwesomeIcon icon = {faUser} />
+        </button>
+        {profileMenu}
+        </div>
+    )
+
+
     return (
         <div>
         <div className = 'navbar'>
@@ -85,12 +96,7 @@ function Navbar(props) {
                 </ul>
             </div>
             <div className = 'navbar-profile'>
-                <div className = 'nav-profile'>
-                    <button className = 'nav-btn nav-btn-list'>
-                        <FontAwesomeIcon icon = {faUser} />
-                    </button>
-                    {profileMenu}
-                </div>
+                {navbarProfile}
             </div>
         </div>
     </div>
@@ -99,6 +105,7 @@ function Navbar(props) {
 }
 
 const mapStateToProps = (state) => ({
+    loading: state.user.loading,
     auth: state.user.authenticated,
     isAdmin: state.user.credentials.isAdmin
 })
