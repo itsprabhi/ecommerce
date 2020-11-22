@@ -10,9 +10,10 @@ function CreateProduct() {
         productName: '',
         productPrice: null,
         productDetails: '',
-        productType:'',
+        productCategory:'',
+        productBrand:'',
         productFeatures: '',
-        productSaleOn: null,
+        productSale: null,
         productSalePrice: null,
         productPictures: [],
     }
@@ -71,7 +72,7 @@ function CreateProduct() {
             <label for = 'productFeatures'>Product Details</label><br />
             <textarea type = 'text' name = 'productFeatures'  onChange = {onChange}></textarea><br />
             <label for = 'producType'>Product Tyoe</label><br />
-            <select id="product-type" name="productType"  onChange = {onChange}>
+            <select id="product-type" name="productCategory"  onChange = {onChange}>
                 <option value="Air Conditioner">Air Conditioner</option>
                 <option value="Cameras">Cameras</option>
                 <option value="Phones">Phones</option>
@@ -83,6 +84,12 @@ function CreateProduct() {
             </select> <br />
             <label for = 'productSalePrice'>Product Sale Price</label><br />
             <input type = 'text' name = 'productSalePrice'  onChange = {onChange}></input><br />
+            <select id="product-brand" name="productBrand"  onChange = {onChange}>
+                <option value="samsung">Samsung</option>
+                <option value="panasonic">Panasonic</option>
+                <option value="lg">LG</option>
+            </select><br />
+            
             <button type = 'submit' onClick = {onsubmit}>Create Product</button>
             </form>
             <input type = 'file' name = 'images' multiple accept="image/jpeg, image/png" onChange = {onImageSelect}></input>

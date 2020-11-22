@@ -47,14 +47,18 @@ function Shop(props) {
     console.log(query)
     const [products, setProducts] = useState([])
 
-    const visibleProducts = () => {
-        if(option && query){
-            let dp = products.filter(product => product[option] === query)
-            console.log(dp)
-            return dp
-        }
-        return products
-    }
+    // const visibleProducts = () => {
+    //     if(option && query){
+    //         let dp = 
+    //         console.log(dp)
+    //         return dp
+    //     }
+    //     return products
+    // }
+
+    const visibleProducts = option && query ? (
+        products.filter(product => product[option] === query)
+    ) : products
 
     useEffect(() => {
         axios.get('/products')
@@ -62,7 +66,7 @@ function Shop(props) {
             setProducts(data.data)
         })
         .then(() => {
-            visibleProducts()
+            // visibleProducts()
         })
         .catch(err => {
             console.log(err)
@@ -75,8 +79,7 @@ function Shop(props) {
         <div className = 'shop'>
             <Sidebar options = {sidebarOptions} />
             <div class = 'shop-section'>
-
-                {products.map(product => {
+                {visibleProducts.map(product => {
                     return (
                     <ProductCard product = {product} />
                     )

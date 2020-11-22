@@ -8,7 +8,8 @@ function SignupForm(props) {
     const history = useHistory()
 
     const [user, setUser] = useState({
-        userName:'',
+        firstName:'',
+        lastName:'',
         userEmail:'',
         userPassword:'',
         userConfirmPassword:'',
@@ -34,9 +35,10 @@ function SignupForm(props) {
     }
 
     const onSubmit = () => {
-        const { userName, userEmail, userPassword, userConfirmPassword, userHandle } = user
+        const { firstName, lastName, userEmail, userPassword, userConfirmPassword, userHandle } = user
         const newUser = {
-            userName,
+            firstName,
+            lastName,
             userEmail,
             userPassword,
             userConfirmPassword,
@@ -57,7 +59,9 @@ function SignupForm(props) {
     return (
         <div>
             <div className = 'signup-form'>
-                <input type = 'text' name = 'userName' placeholder = 'Enter your name' onChange = {onHandleChange} /><br />
+                <input type = 'text' name = 'firstName' placeholder = 'Enter your first name' onChange = {onHandleChange} /><br />
+                {nameHelper} <br />
+                <input type = 'text' name = 'lastName' placeholder = 'Enter your last name' onChange = {onHandleChange} /><br />
                 {nameHelper} <br />
                 <input type = 'email' name = 'userEmail' placeholder = 'Enter your email' onChange = {onHandleChange} /> <br />
                 {emailHelper} <br />
