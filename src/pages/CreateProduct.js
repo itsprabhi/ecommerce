@@ -73,9 +73,9 @@ function CreateProduct() {
             <textarea type = 'text' name = 'productFeatures'  onChange = {onChange}></textarea><br />
             <label for = 'producType'>Product Tyoe</label><br />
             <select id="product-type" name="productCategory"  onChange = {onChange}>
-                <option value="Air Conditioner">Air Conditioner</option>
-                <option value="Cameras">Cameras</option>
-                <option value="Phones">Phones</option>
+                <option value="airconditioners">Air Conditioner</option>
+                <option value="cameras">Cameras</option>
+                <option value="smartphones">Phones</option>
             </select><br />
             <label for = 'productSaleOn'>Product Tyoe</label><br />
             <select id="productSaleOn"  onChange = {onChange} name="productSaleOn">
@@ -85,6 +85,7 @@ function CreateProduct() {
             <label for = 'productSalePrice'>Product Sale Price</label><br />
             <input type = 'text' name = 'productSalePrice'  onChange = {onChange}></input><br />
             <select id="product-brand" name="productBrand"  onChange = {onChange}>
+                <option value="none">Select Brand</option>
                 <option value="samsung">Samsung</option>
                 <option value="panasonic">Panasonic</option>
                 <option value="lg">LG</option>

@@ -7,10 +7,10 @@ function Product(props) {
     const [product, setProduct] = useState({
         productCreatedAt: '',
         productDetails: '',
-        productFeatures: "",
-        productName: "",
+        features: "",
+        name: "",
         productPictures:[],
-        productPrice: "",
+        price: "",
         productSaleOn: "",
         productSalePrice: "",
         productType: ""
@@ -29,7 +29,11 @@ function Product(props) {
 
     console.log(product)
 
-    const { productName, productPrice, productPictures,productFeatures} = product
+    let { name, price, productPictures, features} = product
+
+    if (!typeof productPictures === Array || productPictures.length === 0){
+        productPictures = ['https://firebasestorage.googleapis.com/v0/b/aus-ecommerce.appspot.com/o/defaultProfilePicture.jpg?alt=media']
+    }
 
     return (
         <div className = 'product-page'>
@@ -39,10 +43,10 @@ function Product(props) {
                 </div>
                 <div className = 'product-main-content'>
                     <h1>
-                        {productName}
+                        {name}
                     </h1>
                     <div className = 'product-price'>
-                        <h5><b>$ {productPrice}</b></h5>
+                        <h5><b>$ {price}</b></h5>
                         <h5><b>Color: White</b></h5>
                     </div>
                     <div className = 'product-counter'>
@@ -55,7 +59,7 @@ function Product(props) {
                         </button>
                     </div>
                     <div className = 'product-desc'>
-                        <p>{productFeatures}</p>
+                        <p>{features}</p>
                     </div>
                     <div className = 'product-buy'>
                         <button>

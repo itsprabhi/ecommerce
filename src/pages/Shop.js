@@ -6,9 +6,22 @@ import { Link } from 'react-router-dom'
 
 
 const sidebarOptions = {
-    categories:['cameras','smartphones','air conditioners'],
-    brands: ['samsung', 'LG', 'panasonic'],
-    price: ['>$100', '$100 - $300','$300-$600','<$600']
+    category:[
+        {text:'Cameras',url:'cameras'},
+        {text:'Smartphones', url: 'smartphones'},
+        {text:'Air Conditioners',url:'airconditioners'}
+    ],
+    brand: [
+        {text:'Samsung',url:'samsung'},
+        {text:'LG',url:'lg'}, 
+        {text:'Panasonic',url:'panasonic'}
+    ],
+    price: [
+        {text:'>$100',url:'0=100'}, 
+        {text:'$100 - $300',url:'100=300'},
+        {text:'$300-$600', url:'300=600'},
+        {text:'<$600', url:'600='}
+    ]
 }
 
 function Sidebar (props) {
@@ -24,10 +37,10 @@ function Sidebar (props) {
                     <div className = 'sidebar-option-header'>
                         <h3>{categoryHeading}</h3>
                         <ul>
-                            {optionObject[categoryHeading].map(e => {
+                            {optionObject[categoryHeading].map(categoryTopic => {
                                 return (
-                                <Link to = {`/shop/${categoryHeading}/${e}`}>
-                                    <li>{e}</li>
+                                <Link to = {`/shop/${categoryHeading}/${categoryTopic.url}`}>
+                                    <li>{categoryTopic.text}</li>
                                 </Link>
                                 )
                             })}
@@ -44,7 +57,8 @@ function Sidebar (props) {
 function Shop(props) {
     const option = props.match.params.option
     const query = props.match.params.id
-    console.log(query)
+    // console.log(query.split('='))
+    // console.log(query)
     const [products, setProducts] = useState([])
 
     // const visibleProducts = () => {
@@ -55,6 +69,16 @@ function Shop(props) {
     //     }
     //     return products
     // }
+
+//    const visibleProducts = () => {
+//         if(option === undefined){
+//             return products
+//         }
+//         if(option !== 'price'){
+//             return products.filter(product => product[option] === query)
+//         }
+//         console.log(query.split('?'))
+//    }
 
     const visibleProducts = option && query ? (
         products.filter(product => product[option] === query)

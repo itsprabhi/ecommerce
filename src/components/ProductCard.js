@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/product/product.css'
 function ProductCard(props) {
-    let { productName, productPictures, productPrice, id} = props.product
+    let {name, productPictures, price, id} = props.product
 
-    if (!typeof productPictures === Array){
+    if (!typeof productPictures === Array || productPictures.length === 0){
         productPictures = ['https://firebasestorage.googleapis.com/v0/b/aus-ecommerce.appspot.com/o/defaultProfilePicture.jpg?alt=media']
     }
 
@@ -14,16 +14,16 @@ function ProductCard(props) {
         <div>
             <div className = 'product-card'>
                 <div className = 'product-img'>
-                    <img src = {productPictures[0]} alt = {productName} />
+                    <img src = {productPictures[0]} alt = '' />
                 </div>
                 <div className = 'product-txt'>
-                    <Link to = {`shop/product/${id}`}>
+                    <Link to = {`/shop/product/${id}`}>
                         <h5>
-                            {productName}
+                            {name}
                         </h5>
                     </Link>
                     <p>
-                        {productPrice}
+                        {price}
                     </p>
                 </div>
             </div>
