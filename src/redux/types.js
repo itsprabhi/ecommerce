@@ -11,3 +11,7 @@ export const SET_ERRORS = 'SET_ERRORS'
 export const LOADING_UI = 'LOADING_UI'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 export const SET_UI = 'SET_UI'
+
+// DATA TYPE
+
+export const SET_PRODUCTS = 'SET_PRODUCTS'

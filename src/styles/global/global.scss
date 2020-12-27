@@ -7,7 +7,7 @@ h1,h2,h3,h4,h5{
 }
 
 h1{
-    font-size: 70px;
+    font-size: 60px;
 }
 h2{
     font-size:55px;
@@ -23,4 +23,97 @@ h5{
 }
 p{
     font-size: 16px;
+}
+
+.main-frame{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    .navbar{
+        width: 20vw;
+    }
+    .app-frame{
+        width:80vw;
+    }
+
+}
+
+.footer{
+    width:100%;
+    height: 400px;
+    background:rgb(82, 82, 82);
+}
+
+.heading-banner{
+    width:100%;
+    height:40vh;
+    background: #59C9A5;
+    margin: 30px auto;
+    border-radius: 20px;
+}
+
+.home-grid-box-one{
+    grid-area: box-one;
+    height: 62vh;
+    background:#59C9A5
+}
+.home-grid-box-two{
+    grid-area: box-two;
+    height: 30vh;
+    background: #465775;
+}
+.home-grid-box-three{
+    grid-area: box-three;
+    height: 30vh;
+    background:#EF6F6C;
+}
+
+.home-grid{
+    display: grid;
+    grid-template-areas: 
+    "box-one box-two"
+    "box-one box-three";
+    align-items: center;
+    gap: 10px;
+
+    div{
+        border-radius: 20px;
+    }
+}
+
+.home-feature-text{
+    text-align: center;
+    background: #eeeeee;
+    margin: 30px auto;
+    padding: 30px 5px;
+    *{
+        margin: 15px auto;
+    }
+    border-radius: 20px;
+}
+
+.home-feature-container{
+    display: flex;
+    text-align: center;
+
+    .home-feature-icon{
+        background: #59C9A5;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+.home-feature-card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    div{
+        width: 100%;
+    }
 }

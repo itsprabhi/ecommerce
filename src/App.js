@@ -25,11 +25,14 @@ import Product from './pages/Product';
 // REDUX
 import {SET_AUTHENTICATED, SET_UNAUTHENTICATED } from './redux/types'
 import {logoutUser, getUserData} from './redux/actions/userActions'
+import {getProducts} from './redux/actions/dataActions'
 import {connect} from 'react-redux'
 import store from './redux/store'
 import CreateProduct from './pages/CreateProduct';
 import Admin from './pages/Admin';
 import AdminRoute from './utils/AdminRoute';
+import ProductUpdate from './components/ProductUpdate';
+import Footer from './components/Footer';
 
 // AUTHENTICATE USER
 
@@ -40,44 +43,56 @@ function App(props) {
   
   useEffect(() => {
     let csrfToken;
-    axios.get('/csrfToken')
+    let userClaims
+    axios.get('/checkUser')
     .then(data => {
+      console.log(data.data)
       csrfToken = data.data.csrfToken
+      userClaims = data.data.decodedClaims
       axios.defaults.headers['X-CSRF-Token'] = csrfToken
     })
-  },[])
-
-  useEffect(() => {
-    axios.get('/checkUser')
-    .then(res => {
-      if(res.data.authenticated){
-        store.dispatch({ type: SET_AUTHENTICATED})
+    .then(() => {
+      if(userClaims){
+        store.dispatch({type: SET_AUTHENTICATED})
         store.dispatch(getUserData())
       }else{
         store.dispatch({type: SET_UNAUTHENTICATED})
       }
     })
+    .then(() => {
+        store.dispatch(getProducts())
+    })
     .catch(err => console.log(err))
-  })
+  },[])
+
+  // useEffect(() => {
+    
+  // })
 
   return (
     
     <div className="App">
+      <div className = 'main-frame'>
       <Router>
         <Navbar/>
-        <Switch>
-          <Route exact path = '/' component = {Home} />
-          <Route exact path = '/shop' component = {Shop} />
-          <Route exact path = '/shop/product/:id' component = {(props) => <Product {...props} />} />
-          <Route exact path = '/shop/:option/:id' component = {(props) => <Shop {...props} />} />
-          <AuthRoute exact path = '/login' component = {Login}/>
-          <AuthRoute exact path = '/signup' component = {Signup}  />
-          <AdminRoute exact path = '/admin/create/product' component = {CreateProduct}  />
-          <AdminRoute exact path = '/admin' component = {Admin}  />
-          <UserRoute exact path = '/user' component = {UserProfile}  />
-          <Route exact path = '/about' component = {About} />
-        </Switch>
+        <div className = 'app-frame'>
+          <Switch>
+            <Route exact path = '/' component = {Home} />
+            <Route exact path = '/shop' component = {Shop} />
+            <Route exact path = '/shop/product/:id' component = {(props) => <Product {...props} />} />
+            <Route exact path = '/shop/:option/:id' component = {(props) => <Shop {...props} />} />
+            <AuthRoute exact path = '/login' component = {Login}/>
+            <AuthRoute exact path = '/signup' component = {Signup}  />
+            <AdminRoute exact path = '/admin/create/product' component = {CreateProduct}  />
+            <Route exact path = '/admin/product/update/:id' component = {ProductUpdate}  />
+            <AdminRoute exact path = '/admin' component = {Admin}  />
+            <UserRoute exact path = '/user' component = {UserProfile}  />
+            <Route exact path = '/about' component = {About} />
+          </Switch>
+        </div>
       </Router>
+      </div>
+      <Footer />
     </div>
   );
 }

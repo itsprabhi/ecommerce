@@ -1,88 +1,84 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap');
 
-$primary_color: #FF3B3F;
+$primary_color: #EF6F6C;
 
 
 
 .navbar{
-    width:  100%;
-    background: $primary_color;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background:$primary_color;
     color: white;
-    font-family: 'Lato', sans-serif;
+    height: 100vh;
+    position: sticky;
+    top:0;
+    
+
+    div{
+        width:100%;
+    }
 
     a{
         color: white;
+    }
+    
+    
+}
+
+.navbar-brand{
+    text-align: center;
+    width: 100%;
+    height: 30px;
+    padding: 20px 0px 20px 0px;
+}
+
+.navbar-list{
+    
+    ul{
+        list-style: none;
+        padding: 0px;
+    }
+
+    li{
+        padding: 20px 0px 20px 10px;
+        font-size: 18px;
+        font-weight: bold;
+        border: thin solid #ff6769;
+
+        svg{
+            margin: auto 15px auto 5px;
+        }
+    }
+    
+    a{
         text-decoration: none;
     }
 
-    div{
-        width: 30%;
-    }
-
-    .navbar-brand{
-        a{
-            margin: auto 15px;
-            padding: 10px 15px;
-        }
-        text-align: left;
-    }
-
-    .navbar-list{
-
-        display: flex;
-        justify-content: center;
-
-        ul{
-            list-style: none;
-        }
-
-        li{
-            display: inline-block;
-            margin: auto 15px;
-            padding: 10px 15px;
-        }
-    }
-
-    .navbar-profile{
-        display: flex;
-        justify-content: flex-end;
+    .nav-btn{
+        background:transparent;
+        border: none;
+        font-size: 16px;
+        color:#ddd;
     }
 }
 
 .nav-profile{
-    position: relative;
+    justify-content: center;
     ul{
-        position: absolute;
-        width: 100%;
-        top:0px;
-        left: -50%;
-        background: $primary_color;
-        display: none;
+        padding: 0;
         list-style: none;
+        width: 100%;
+        display: flex;
+        // flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
     }
-    li{
-        margin: 30% auto;
+    button, a{
+        background: #eee;
+        color: black;
+        padding: 10px 20px;
+        border:none;
+        border-radius: 5px;
+        width: 100%;
+        margin: 5px;
     }
-    ul:hover{
-        display: block;
-    }
-}
-.navbar-list:hover, .navbar-profile:hover{
-    ul{
-        display: block;
-    }
-}
-
-.nav-btn-list{
-    border:2px solid #fff;
-    padding: 8px 10px;
-    border-radius: 50%;
-    font-size: 15px;
-}
-.nav-btn{
-    background:$primary_color;
-    color: white;
+    
 }

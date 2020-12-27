@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import '../styles/signup/signup.css'
+
+// redux stuff
 import {useHistory} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loginUser } from '../redux/actions/userActions'
+
 
 function LoginForm(props) {
 
@@ -13,7 +16,6 @@ function LoginForm(props) {
         userPassword:''
     })
 
-    
     useEffect(() => {
         console.log(props.ui)
         if(props.ui.errors){

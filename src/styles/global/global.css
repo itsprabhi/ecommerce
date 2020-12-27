@@ -5,7 +5,7 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-  font-size: 70px;
+  font-size: 60px;
 }
 
 h2 {
@@ -26,5 +26,126 @@ h5 {
 
 p {
   font-size: 16px;
+}
+
+.main-frame {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.main-frame .navbar {
+  width: 20vw;
+}
+
+.main-frame .app-frame {
+  width: 80vw;
+}
+
+.footer {
+  width: 100%;
+  height: 400px;
+  background: #525252;
+}
+
+.heading-banner {
+  width: 100%;
+  height: 40vh;
+  background: #59C9A5;
+  margin: 30px auto;
+  border-radius: 20px;
+}
+
+.home-grid-box-one {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: box-one;
+  height: 62vh;
+  background: #59C9A5;
+}
+
+.home-grid-box-two {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: box-two;
+  height: 30vh;
+  background: #465775;
+}
+
+.home-grid-box-three {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: box-three;
+  height: 30vh;
+  background: #EF6F6C;
+}
+
+.home-grid {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "box-one box-two" "box-one box-three";
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.home-grid div {
+  border-radius: 20px;
+}
+
+.home-feature-text {
+  text-align: center;
+  background: #eeeeee;
+  margin: 30px auto;
+  padding: 30px 5px;
+  border-radius: 20px;
+}
+
+.home-feature-text * {
+  margin: 15px auto;
+}
+
+.home-feature-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+}
+
+.home-feature-container .home-feature-icon {
+  background: #59C9A5;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.home-feature-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.home-feature-card div {
+  width: 100%;
 }
 /*# sourceMappingURL=global.css.map */

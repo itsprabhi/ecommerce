@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'react-router-dom/Link'
 import '../styles/navbar/navbar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faHome, faShoppingBag, faIdBadge, faShoppingBasket, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 import {logoutUser} from '../redux/actions/userActions'
 import store from '../redux/store'
 import {connect} from 'react-redux'
@@ -19,6 +19,7 @@ function Navbar(props) {
     const adminBtn = props.isAdmin ? (
         <Link to = '/admin'>
             <li>
+            <FontAwesomeIcon icon = {faPencilAlt} />
                 Admin
             </li>
         </Link>
@@ -28,11 +29,13 @@ function Navbar(props) {
         <ul>
         <Link to = '/user'>
             <li>
+            <FontAwesomeIcon icon = {faUser} />
                 Profile
             </li>
         </Link>
         <Link to = '/cart'>
             <li>
+            <FontAwesomeIcon icon = {faShoppingBasket} />
                 Cart
             </li>
         </Link>
@@ -42,32 +45,32 @@ function Navbar(props) {
         </li>
     </ul>
     ) : (
-        <ul>
-            <Link to = '/login'>
-                <li>
+        <>
+            {/* <li><Link to = '/login'>
+                
                     Login
-                </li>
-            </Link>
-            <Link to = '/signup'>
-                <li>
-                    Signup
-                </li>
-            </Link>
-        </ul>
+                
+            </Link></li> */}
+            <li><Link to = '/signup'>
+            <FontAwesomeIcon icon = {faUser} />
+                    SignUp
+                
+            </Link></li>
+        </>
     )
 
     const navbarProfile = props.loading ? (<>Loading...</>) : (
         <div className = 'nav-profile'>
-        <button className = 'nav-btn nav-btn-list'>
+        {/* <button className = 'nav-btn nav-btn-list'>
             <FontAwesomeIcon icon = {faUser} />
-        </button>
+        </button> */}
         {profileMenu}
         </div>
     )
 
 
     return (
-        <div>
+        
         <div className = 'navbar'>
             <div className = 'navbar-brand'>
                 <Link to = '/'>
@@ -76,30 +79,39 @@ function Navbar(props) {
                     </b>
                 </Link>
             </div>
+
+            
+
             <div className = 'navbar-list'>
                 <ul>
                     <Link to = '/'>
                         <li>
+                            <FontAwesomeIcon icon = {faHome} />
                             Home
                         </li>
                     </Link>
                     <Link to = '/shop'>
                         <li>
+                            <FontAwesomeIcon icon = {faShoppingBag} />
                             Shop
                         </li>
                     </Link>
                     <Link to = '/about'>
                         <li>
+                            <FontAwesomeIcon icon = {faIdBadge} />
                             About
                         </li>
                     </Link>
+                    {profileMenu}
                 </ul>
             </div>
-            <div className = 'navbar-profile'>
+
+            {/* <div className = 'navbar-profile'>
                 {navbarProfile}
-            </div>
+            </div> */}
+            
         </div>
-    </div>
+    
     )
         
 }

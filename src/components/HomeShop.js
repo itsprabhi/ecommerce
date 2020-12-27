@@ -1,39 +1,36 @@
-import React, {useState,useEffect} from 'react'
-
-import ProductCard from '../components/ProductCard'
-import '../styles/product/product.css'
-import { Link } from 'react-router-dom'
-
+import React, {useState, useEffect } from 'react'
+import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 import Proptypes from 'prop-types'
-
+import ProductCard from './ProductCard'
 
 const sidebarOptions = {
     category:[
         {text:'Cameras',url:'cameras'},
         {text:'Smartphones', url: 'smartphones'},
         {text:'Air Conditioners',url:'airconditioners'}
-    ],
-    brand: [
-        {text:'Samsung',url:'samsung'},
-        {text:'LG',url:'lg'}, 
-        {text:'Panasonic',url:'panasonic'}
-    ],
-    price: [
-        {text:'>$100',url:'0=100'}, 
-        {text:'$100 - $300',url:'100=300'},
-        {text:'$300-$600', url:'300=600'},
-        {text:'<$600', url:'600='}
     ]
 }
 
 function Sidebar (props) {
+
+
     const optionObject = props.options
 
     const keys = Object.keys(optionObject)
 
     return (
-        <div className = 'sidebar-shop'>
+        <div className = 'sidebar-shop sidebar'>
+            <div className = 'sidebar-option'>
+                    <div className = 'sidebar-option-header sidebar-search'>
+                        <h3>Search Here</h3>
+                        <input className = 'search-box' type = 'text' name = 'search' placeholder = 'Enter your search here'></input><br/>
+                        <button className = 'buy-btn search-btn'>
+                            Search
+                        </button>
+                    </div>
+                    
+                </div>
             {keys.map(categoryHeading => {
             return (
                 <div className = 'sidebar-option'>
@@ -57,61 +54,33 @@ function Sidebar (props) {
     )
 }
 
-function Shop(props) {
-    const option = props.match.params.option
-    const query = props.match.params.id
-    // console.log(query.split('='))
-    // console.log(query)
+function HomeShop(props) {
+
     const [products, setProducts] = useState([])
-
-    // const visibleProducts = () => {
-    //     if(option && query){
-    //         let dp = 
-    //         console.log(dp)
-    //         return dp
-    //     }
-    //     return products
-    // }
-
-//    const visibleProducts = () => {
-//         if(option === undefined){
-//             return products
-//         }
-//         if(option !== 'price'){
-//             return products.filter(product => product[option] === query)
-//         }
-//         console.log(query.split('?'))
-//    }
-
-    const visibleProducts = option && query ? (
-        products.filter(product => product[option] === query)
-    ) : products
 
     useEffect(() => {
         const displayProducts = props.products.slice(0,6)
-       setProducts(displayProducts)
+        setProducts(displayProducts)
     }, [props.products])
-    
-
-    
 
     return (
-        <div className = 'shop product-page-container'>
-            
+        <div className = 'home-shop'>
             <div class = 'shop-section'>
-                {visibleProducts.map(product => {
+                {products.map(product => {
                     return (
                     <ProductCard product = {product} />
                     )
                 })}
             </div>
-
             <Sidebar options = {sidebarOptions} />
+            
         </div>
     )
 }
 
-Shop.propTypes = {
+
+
+HomeShop.propTypes = {
     products: Proptypes.array.isRequired
 }
 
@@ -119,7 +88,5 @@ const mapStateToProps = (state) => ({
     products: state.data.products,
 })
 
-export default connect(mapStateToProps)(Shop)
-
-
+export default connect(mapStateToProps)(HomeShop)
 
