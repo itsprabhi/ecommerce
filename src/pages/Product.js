@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
 import Proptypes from 'prop-types'
 
-
+import {addToCart} from '../redux/actions/userActions'
 
 function Product(props) {
     const id = props.match.params.id
@@ -17,7 +17,9 @@ function Product(props) {
         price: "",
         productSaleOn: "",
         productSalePrice: "",
-        productType: ""
+        productType: "",
+        productQuantity:1,
+        productId: id
     })
     
     useEffect(() => {
@@ -27,6 +29,10 @@ function Product(props) {
     }, [props.products])
 
     // console.log(product)
+
+    const toCart = () => {
+        props.addToCart(product, id)
+    }
 
     const addProductQuantity = () => {
 
@@ -71,7 +77,7 @@ function Product(props) {
                             <button className = 'buy-btn'>
                                 Buy Now
                             </button>
-                            <button className = 'buy-btn-trans'>
+                            <button className = 'buy-btn-trans' onClick = {toCart}>
                                 Add to Cart
                             </button>
                         </div>
@@ -95,5 +101,9 @@ const mapStateToProps = (state) => ({
     products: state.data.products
 })
 
-export default connect(mapStateToProps)(Product)
+const mapActionsToProps = {
+    addToCart
+}
+
+export default connect(mapStateToProps,mapActionsToProps)(Product)
 

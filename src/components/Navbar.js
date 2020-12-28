@@ -33,7 +33,7 @@ function Navbar(props) {
                 Profile
             </li>
         </Link>
-        <Link to = '/cart'>
+        <Link to = '/user/cart'>
             <li>
             <FontAwesomeIcon icon = {faShoppingBasket} />
                 Cart

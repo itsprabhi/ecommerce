@@ -81,3 +81,15 @@ export const getUserData = () => (dispatch) => {
         })
     })
 }
+
+export const addToCart = (product,id) => (dispatch) =>{
+    console.log(`this function is working`)
+    axios.post(`/product/${id}/addToOrder`, product)
+    .then(data => {
+        console.log(data.data)
+        getUserData()
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
