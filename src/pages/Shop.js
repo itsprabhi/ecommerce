@@ -60,50 +60,37 @@ function Sidebar (props) {
 function Shop(props) {
     const option = props.match.params.option
     const query = props.match.params.id
-    // console.log(query.split('='))
-    // console.log(query)
+    const price = option === 'price' ? query.split('=') : undefined
     const [products, setProducts] = useState([])
 
-    // const visibleProducts = () => {
-    //     if(option && query){
-    //         let dp = 
-    //         console.log(dp)
-    //         return dp
-    //     }
-    //     return products
-    // }
+    const visibleProductsOnPrice = price ? (
+        products.filter(product => product[option] > price[0] && product[option] < price[1])
+    ) : null
 
-//    const visibleProducts = () => {
-//         if(option === undefined){
-//             return products
-//         }
-//         if(option !== 'price'){
-//             return products.filter(product => product[option] === query)
-//         }
-//         console.log(query.split('?'))
-//    }
-
-    const visibleProducts = option && query ? (
+    const visibleProductsOnCategory = option && query ? (
         products.filter(product => product[option] === query)
     ) : products
+
+    const visibleProducts = visibleProductsOnPrice ? visibleProductsOnPrice : visibleProductsOnCategory
 
     useEffect(() => {
         const displayProducts = props.products.slice(0,6)
        setProducts(displayProducts)
     }, [props.products])
     
-
-    
+    const emptyMessage = `Sorry we dont have product on this criteria`
 
     return (
         <div className = 'shop product-page-container'>
             
             <div class = 'shop-section'>
-                {visibleProducts.map(product => {
-                    return (
-                    <ProductCard product = {product} />
-                    )
-                })}
+                {visibleProducts.length !== 0 ? (
+                    visibleProducts.map(product => {
+                        return (
+                        <ProductCard product = {product} />
+                        )
+                    })
+                ) : (<p>{emptyMessage}</p>)}
             </div>
 
             <Sidebar options = {sidebarOptions} />

@@ -8,6 +8,7 @@ import '../styles/product/product.css'
 function Cart(props) {
 
     const [cart, setCart] = useState([])
+    const [totalCost, setTotalCost] = useState(0)
 
     useEffect(() => {
         console.log(cart)
@@ -28,6 +29,11 @@ function Cart(props) {
 
         setCart(newArr)
     }
+
+    useEffect(() => {
+        let total = (cart.reduce(function (acc, obj) { return acc + obj.productPrice*obj.productQuantity; }, 0)).toFixed(2) // 7
+        setTotalCost(total)
+    }, [cart])
 
     const onSubtract = (id) => {
         const arr = cart.filter(el => el.productId === id)
@@ -54,6 +60,11 @@ function Cart(props) {
                         {cart.map(product => (
                             <CartCard product = {product} onAdd = {onAdd} onSubtract = {onSubtract} />
                         ))}
+                    </div>
+                    <div className = 'cart-summary'>
+                        <h3>
+                            Your Total is : {totalCost}
+                        </h3>
                     </div>
                 </div>
             </div>
