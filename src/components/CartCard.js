@@ -5,7 +5,7 @@ function CartCard(props) {
 
 
 
-    const {productName, productPrice, productQuantity, productId } = props.product
+    const {productName, productPrice, productQuantity, productId, deleteFromCart } = props.product
     console.log(props)
 
 
@@ -33,6 +33,9 @@ function CartCard(props) {
                     Product Price:
                 </div>
                 $ {(productPrice * productQuantity).toFixed(2) }
+            </div>
+            <div className = 'cart-card-delete'>
+                <button onClick = {() => props.deleteFromCart(props.product,productId)}>delete</button>
             </div>
         </div>
     )

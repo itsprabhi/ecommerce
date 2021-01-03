@@ -3,7 +3,7 @@ import CartCard from '../components/CartCard'
 import { connect } from 'react-redux'
 import Proptypes from 'prop-types'
 import '../styles/product/product.css'
-
+import {deleteFromCart} from '../redux/actions/userActions'
 
 function Cart(props) {
 
@@ -58,7 +58,7 @@ function Cart(props) {
                     </h1>
                     <div className = 'cart-cards'>
                         {cart.map(product => (
-                            <CartCard product = {product} onAdd = {onAdd} onSubtract = {onSubtract} />
+                            <CartCard product = {product} onAdd = {onAdd} onSubtract = {onSubtract} deleteFromCart = {props.deleteFromCart} />
                         ))}
                     </div>
                     <div className = 'cart-summary'>
@@ -81,9 +81,13 @@ const mapStateToProps = (state) => ({
     cart: state.user.credentials.cart
 })
 
+const mapActionsToProps = {
+    deleteFromCart
+}
 
 
 
-export default connect(mapStateToProps)(Cart)
+
+export default connect(mapStateToProps,mapActionsToProps)(Cart)
 
 

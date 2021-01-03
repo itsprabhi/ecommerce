@@ -51,10 +51,9 @@ function Navbar(props) {
                     Login
                 
             </Link></li> */}
-            <li><Link to = '/signup'>
+            <li><Link to = '/login'>
             <FontAwesomeIcon icon = {faUser} />
-                    SignUp
-                
+                    Login / SignUp
             </Link></li>
         </>
     )

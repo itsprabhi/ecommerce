@@ -1,4 +1,4 @@
-import {SET_USER, LOADING_UI, SET_ERRORS, CLEAR_ERRORS, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER} from '../types'
+import {SET_USER, LOADING_UI, SET_ERRORS, CLEAR_ERRORS, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER, SET_UI} from '../types'
 import axios from 'axios'
 
 export const loginUser = (userData, history) => (dispatch) => {
@@ -84,12 +84,32 @@ export const getUserData = () => (dispatch) => {
 
 export const addToCart = (product,id) => (dispatch) =>{
     console.log(`this function is working`)
-    axios.post(`/product/${id}/addToOrder`, product)
+    axios.post(`/product/${id}/addToCart`, product)
     .then(data => {
         console.log(data.data)
-        getUserData()
+        dispatch(getUserData())
     })
     .catch(err => {
-        console.log(err)
+        dispatch({
+            type: SET_ERRORS,
+            payload: err.response.data.error
+        })
+        console.log(err.response.data)
+    })
+}
+
+export const deleteFromCart = (product,id) => (dispatch) =>{
+    console.log(`this function is working`)
+    axios.delete(`/product/${id}/deleteFromCart`, product)
+    .then(data => {
+        console.log(data.data)
+        dispatch(getUserData())
+    })
+    .catch(err => {
+        dispatch({
+            type: SET_ERRORS,
+            payload: err.response.data.error
+        })
+        console.log(err.response.data)
     })
 }

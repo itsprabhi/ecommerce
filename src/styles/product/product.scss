@@ -59,6 +59,16 @@
     }
 }
 
+.product-txt{
+
+    text-align: left;
+    div{
+        display:flex;
+        text-align: left;
+    }
+    font-weight: bold;
+}
+
 .product-page-container{
     width: 95%;
     margin: auto;
@@ -230,4 +240,10 @@
     width: 40px;
     height: 40px;
     font-size: 20px;
+}
+
+.add-btn-card{
+    width: 30px;
+    height: 30px;
+    padding:5px;
 }

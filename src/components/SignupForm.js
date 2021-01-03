@@ -59,20 +59,26 @@ function SignupForm(props) {
     return (
         <div>
             <div className = 'signup-form'>
-                <input type = 'text' name = 'firstName' placeholder = 'Enter your first name' onChange = {onHandleChange} /><br />
+                <label>Enter your First Name</label> 
+                <input type = 'text' name = 'firstName' className = 'text-name' placeholder = 'Enter your first name' onChange = {onHandleChange} />
                 {nameHelper} <br />
-                <input type = 'text' name = 'lastName' placeholder = 'Enter your last name' onChange = {onHandleChange} /><br />
+                <label>Enter your Last Name</label>
+                <input type = 'text' name = 'lastName'  className = 'text-name' placeholder = 'Enter your last name' onChange = {onHandleChange} /><br />
                 {nameHelper} <br />
+                <label>Enter your Email</label>
                 <input type = 'email' name = 'userEmail' placeholder = 'Enter your email' onChange = {onHandleChange} /> <br />
                 {emailHelper} <br />
+                <label>Enter your Password</label>
                 <input type = 'password' name = 'userPassword' placeholder = 'Enter your password' onChange = {onHandleChange} /> <br />
                 {passwordHelper} <br />
+                <label>Confirm your Password</label>
                 <input type = 'password' name = 'userConfirmPassword' placeholder = 'Confirm your password' onChange = {onHandleChange} /> <br />
                 {confirmPasswordHelper} <br />
+                <label>Enter your Username</label>
                 <input type = 'text' name = 'userHandle' placeholder = 'Enter your username' onChange = {onHandleChange} /> <br />
                 {handleHelper} <br/>
                 {errorHelper} <br />
-                <button className = 'primary-btn' onClick = {onSubmit}>
+                <button className = 'primary-btn buy-btn' onClick = {onSubmit}>
                     Sign Up!
                 </button>
             </div>

@@ -63,7 +63,7 @@ function LoginForm(props) {
                 <input type = 'password' name = 'userPassword' placeholder = '********' onChange = {onHandleChange} /> <br />
                 {passwordHelper} <br />
                 {errorHelper} <br />
-                <button className = 'primary-btn' onClick = {onSubmit}>
+                <button className = 'primary-btn buy-btn' onClick = {onSubmit}>
                     Log In!
                 </button>
             </div>
