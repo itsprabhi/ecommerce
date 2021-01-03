@@ -34,6 +34,8 @@ import AdminRoute from './utils/AdminRoute';
 import ProductUpdate from './components/ProductUpdate';
 import Footer from './components/Footer';
 import Cart from './pages/Cart';
+import AdminOrders from './pages/AdminOrders';
+import AdminProducts from './pages/AdminProducts';
 
 // AUTHENTICATE USER
 
@@ -85,8 +87,10 @@ function App(props) {
             <AuthRoute exact path = '/login' component = {Login}/>
             <AuthRoute exact path = '/signup' component = {Signup}  />
             <AdminRoute exact path = '/admin/create/product' component = {CreateProduct}  />
-            <Route exact path = '/admin/product/update/:id' component = {ProductUpdate}  />
+            <AdminRoute exact path = '/admin/product/update/:id' component = {ProductUpdate}  />
             <AdminRoute exact path = '/admin' component = {Admin}  />
+            <AdminRoute exact path = '/admin/orders' component = {AdminOrders}  />
+            <AdminRoute exact path = '/admin/products' component = {AdminProducts}  />
             <UserRoute exact path = '/user' component = {UserProfile}  />
             <UserRoute exact path = '/user/cart' component = {Cart}  />
             <Route exact path = '/about' component = {About} />

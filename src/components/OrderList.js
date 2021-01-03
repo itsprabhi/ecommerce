@@ -23,7 +23,7 @@ function OrderList(props) {
         <div className = 'order-list-container'>
             <div>
             <h2>
-            Your total orders are: {orders.length}
+            {/* Your total orders are: {orders.length} */}
         </h2>
         </div>
             <div className = 'order-list-header'>

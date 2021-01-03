@@ -74,7 +74,7 @@ function Shop(props) {
     const visibleProducts = visibleProductsOnPrice ? visibleProductsOnPrice : visibleProductsOnCategory
 
     useEffect(() => {
-        const displayProducts = props.products.slice(0,6)
+        const displayProducts = props.products
        setProducts(displayProducts)
     }, [props.products])
     
@@ -85,7 +85,7 @@ function Shop(props) {
             
             <div class = 'shop-section'>
                 {visibleProducts.length !== 0 ? (
-                    visibleProducts.map(product => {
+                    visibleProducts.slice(0,6).map(product => {
                         return (
                         <ProductCard product = {product} />
                         )
