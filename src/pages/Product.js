@@ -3,7 +3,8 @@ import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
 import Proptypes from 'prop-types'
 
-import {addToCart} from '../redux/actions/userActions'
+import {addToCart,addCurrentOrder} from '../redux/actions/userActions'
+import { Link } from 'react-router-dom'
 
 function Product(props) {
     const id = props.match.params.id
@@ -74,9 +75,9 @@ function Product(props) {
                             </button>
                         </div>
                         <div className = 'product-buy'>
-                            <button className = 'buy-btn'>
+                            <Link to = '/user/checkout' className = 'buy-btn' onClick = {() => props.addCurrentOrder([product])}>
                                 Buy Now
-                            </button>
+                            </Link>
                             <button className = 'buy-btn-trans' onClick = {toCart}>
                                 Add to Cart
                             </button>
@@ -102,7 +103,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapActionsToProps = {
-    addToCart
+    addToCart,
+    addCurrentOrder
 }
 
 export default connect(mapStateToProps,mapActionsToProps)(Product)

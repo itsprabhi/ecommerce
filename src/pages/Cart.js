@@ -3,7 +3,8 @@ import CartCard from '../components/CartCard'
 import { connect } from 'react-redux'
 import Proptypes from 'prop-types'
 import '../styles/product/product.css'
-import {deleteFromCart} from '../redux/actions/userActions'
+import {deleteFromCart, addCurrentOrder} from '../redux/actions/userActions'
+import { Link } from 'react-router-dom'
 
 function Cart(props) {
 
@@ -65,6 +66,9 @@ function Cart(props) {
                         <h3>
                             Your Total is : {totalCost}
                         </h3>
+                        <Link to = '/user/checkout' onClick = {() => props.addCurrentOrder(cart)}>
+                            CheckOut
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -82,7 +86,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapActionsToProps = {
-    deleteFromCart
+    deleteFromCart,
+    addCurrentOrder
 }
 
 

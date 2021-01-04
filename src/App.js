@@ -36,6 +36,7 @@ import Footer from './components/Footer';
 import Cart from './pages/Cart';
 import AdminOrders from './pages/AdminOrders';
 import AdminProducts from './pages/AdminProducts';
+import Checkout from './pages/Checkout';
 
 // AUTHENTICATE USER
 
@@ -93,6 +94,7 @@ function App(props) {
             <AdminRoute exact path = '/admin/products' component = {AdminProducts}  />
             <UserRoute exact path = '/user' component = {UserProfile}  />
             <UserRoute exact path = '/user/cart' component = {Cart}  />
+            <Route exact path = '/user/checkout' component = {Checkout}  />
             <Route exact path = '/about' component = {About} />
           </Switch>
         </div>

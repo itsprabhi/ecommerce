@@ -1,4 +1,4 @@
-import {SET_USER, LOADING_UI, SET_ERRORS, CLEAR_ERRORS, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER, SET_UI} from '../types'
+import {SET_USER, LOADING_UI, SET_ERRORS, CLEAR_ERRORS, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER, SET_UI, SET_ORDER} from '../types'
 import axios from 'axios'
 
 export const loginUser = (userData, history) => (dispatch) => {
@@ -65,6 +65,13 @@ export const signupUser = (newUser, history) => (dispatch) => {
 }
 
 
+export const addCurrentOrder = (products) => (dispatch) => {
+    dispatch({
+        type:SET_ORDER,
+        payload: products
+    })
+}
+
 export const getUserData = () => (dispatch) => {
     dispatch({type:LOADING_USER})
     axios.get('/user')
@@ -113,3 +120,11 @@ export const deleteFromCart = (product,id) => (dispatch) =>{
         console.log(err.response.data)
     })
 }
+
+export const placeOrder = (order) => (dispatch) => {
+    axios.post(`/user/order`, order)
+    .then(data => {
+        console.log(data.data)
+    })
+    .catch(err => console.log(err))
+} 
