@@ -1,10 +1,12 @@
 import axios from 'axios'
-import {SET_PRODUCTS} from '../types'
+import {LOADING_UI, SET_PRODUCTS, SET_UI} from '../types'
 
 export const getProducts = () => (dispatch) => {
+    dispatch({type:LOADING_UI})
     axios.get('/products')
     .then(data => {
-        console.log(`datatatatat`)
+        dispatch({type:SET_UI})
+        // console.log(`datatatatat`)
         console.log(data.data)
         dispatch({type:SET_PRODUCTS, payload: data.data})
     })
@@ -12,9 +14,11 @@ export const getProducts = () => (dispatch) => {
 }
 
 export const deleteProduct = (id) => (dispatch) => {
+    dispatch({type:LOADING_UI})
     axios.post(`/product/${id}/delete`)
     .then(data => {
-        console.log(data.data)
+        dispatch({type:SET_UI})
+        // console.log(data.data)
     })
     .catch(err => {
         console.log(err)
@@ -23,9 +27,10 @@ export const deleteProduct = (id) => (dispatch) => {
 }
 
 export const updateProduct = (product) => (dispatch) => {
+    dispatch({type:LOADING_UI})
     axios.post(`/product/${product.id}/update`, product)
     .then(data => {
-        console.log(data.data)
+        dispatch({type:SET_UI})
     })
     .catch(err => {
         console.log(err)

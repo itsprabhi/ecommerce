@@ -56,7 +56,7 @@ function Product(props) {
                     <div className = 'product-main-content'>
                         <h1>
                             {name}
-                        </h1>d
+                        </h1>
                         <div className = 'product-price'>
                             <h5><b>$ {price}</b></h5>
                             <h5><b>Color: White</b></h5>

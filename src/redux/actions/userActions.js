@@ -28,12 +28,14 @@ export const loginUser = (userData, history) => (dispatch) => {
 }
 
 export const logoutUser = () => (dispatch) => {
+    dispatch({type: LOADING_UI})
     axios.get('/logout').then(res => {
         console.log(res.data)
     }) 
     .then(() => {
         delete axios.defaults.headers.common['Authorization']
         dispatch({ type: SET_UNAUTHENTICATED })
+        dispatch({type: SET_UI})
     })
     .catch(err => console.log(err))
 }
@@ -80,6 +82,9 @@ export const getUserData = () => (dispatch) => {
             type: SET_USER,
             payload: res.data
         })
+        dispatch({
+            type: SET_UI
+        })
     })
     .catch(err => {
         dispatch({
@@ -90,7 +95,8 @@ export const getUserData = () => (dispatch) => {
 }
 
 export const addToCart = (product,id) => (dispatch) =>{
-    console.log(`this function is working`)
+    // console.log(`this function is working`)
+    dispatch({type: LOADING_UI})
     axios.post(`/product/${id}/addToCart`, product)
     .then(data => {
         console.log(data.data)
@@ -106,7 +112,8 @@ export const addToCart = (product,id) => (dispatch) =>{
 }
 
 export const deleteFromCart = (product,id) => (dispatch) =>{
-    console.log(`this function is working`)
+    dispatch({type: LOADING_UI})
+    // console.log(`this function is working`)
     axios.delete(`/product/${id}/deleteFromCart`, product)
     .then(data => {
         console.log(data.data)
@@ -122,9 +129,11 @@ export const deleteFromCart = (product,id) => (dispatch) =>{
 }
 
 export const placeOrder = (order) => (dispatch) => {
+    dispatch({type: LOADING_UI})
     axios.post(`/user/order`, order)
     .then(data => {
         console.log(data.data)
+        dispatch(getUserData())
     })
     .catch(err => console.log(err))
 } 

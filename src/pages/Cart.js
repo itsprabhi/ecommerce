@@ -12,12 +12,10 @@ function Cart(props) {
     const [totalCost, setTotalCost] = useState(0)
 
     useEffect(() => {
-        console.log(cart)
-    }, [cart])
-
-    useEffect(() => {
         setCart([...props.cart])
     }, [props.cart])
+
+    // adding product quantity to the cart
 
     const onAdd = (id) => {
         // get element and index to change
@@ -32,10 +30,13 @@ function Cart(props) {
     }
 
     useEffect(() => {
+        // getting the total cost of the cart
         let total = (cart.reduce(function (acc, obj) { return acc + obj.productPrice*obj.productQuantity; }, 0)).toFixed(2) // 7
         setTotalCost(total)
     }, [cart])
 
+
+    // reducing product quantity in the cart
     const onSubtract = (id) => {
         const arr = cart.filter(el => el.productId === id)
         const index = cart.findIndex(el => el.id === id)

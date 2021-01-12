@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import './styles/global/global.css';
 import axios from 'axios';
-import Cookie from 'js-cookie'
 
 // UTILS
 import AuthRoute from './utils/authRoute';
@@ -10,6 +9,7 @@ import UserRoute from './utils/userRoute';
 
 // COMPONENTS
 import Navbar from './components/Navbar';
+import LoadingBanner from './components/LoadingBanner'
 
 // Pages
 import Home from './pages/Home';
@@ -23,8 +23,8 @@ import Product from './pages/Product';
 
 
 // REDUX
-import {SET_AUTHENTICATED, SET_UNAUTHENTICATED } from './redux/types'
-import {logoutUser, getUserData} from './redux/actions/userActions'
+import {SET_AUTHENTICATED, SET_UI, SET_UNAUTHENTICATED } from './redux/types'
+import { getUserData} from './redux/actions/userActions'
 import {getProducts} from './redux/actions/dataActions'
 import {connect} from 'react-redux'
 import store from './redux/store'
@@ -61,6 +61,7 @@ function App(props) {
         store.dispatch(getUserData())
       }else{
         store.dispatch({type: SET_UNAUTHENTICATED})
+        store.dispatch({type:SET_UI})
       }
     })
     .then(() => {
@@ -69,13 +70,13 @@ function App(props) {
     .catch(err => console.log(err))
   },[])
 
-  // useEffect(() => {
-    
-  // })
+  const whenLoading = props.isLoading ? <LoadingBanner /> : (<></>)
+
 
   return (
     
     <div className="App">
+      {whenLoading}
       <div className = 'main-frame'>
       <Router>
         <Navbar/>
@@ -106,7 +107,8 @@ function App(props) {
 }
 
 const mapStateToProps = (state) => ({
-  authenticated: state.user.authenticated
+  authenticated: state.user.authenticated,
+  isLoading: state.ui.loading
 })
 
 export default connect(mapStateToProps)(App);

@@ -78,7 +78,7 @@
 .product-main{
     display: flex;
     justify-content: space-between;
-    
+    align-items: center;
     div{
         width: 50%;
     }
@@ -87,8 +87,8 @@
         margin: 20px;
     }
     .product-main-img img{
-        width:90%;
-        height: 90%;
+        width:100%;
+        // height: 90%;
         object-fit: cover;
         border-radius: 20px;
     }
@@ -176,7 +176,7 @@
 
 .sidebar-search{
     *{
-        margin: 5px auto;
+        margin: 15px auto;
     }
     .search-box{
         padding: 10px;
@@ -185,7 +185,11 @@
         width: 90%;
     }
 }
-
+.home-sidebar{
+    div{
+        margin: 20px auto;
+    }
+}
 .search-btn{
     background: #59C9A5;
 }
@@ -246,4 +250,63 @@
     width: 30px;
     height: 30px;
     padding:5px;
+}
+
+
+//checkout
+.order-details-card{
+    background: #eee;
+    margin: 20px auto;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.order-details-Summary{
+    margin: 20px auto;
+    text-align: right;
+}
+
+.checkout-page{
+    display: flex;
+    width: 90%;
+    margin: 20px auto;
+    justify-content: space-between;
+    div,form{
+        width:40%;
+
+        margin: 10px;
+        *{
+            width: 100%;
+            
+        }
+    }
+
+    .order-details{
+        *{
+            margin: 20px auto;
+        }
+    }
+
+    form{
+        *{
+            margin: 10px auto;
+        }
+        input{
+            padding:10px
+        }
+        label{
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .checkout-form-payment{
+            button{
+                
+            }
+        }
+        input[type="radio"]{
+            width:auto;
+            margin:10px;
+        }
+    }
+    
 }

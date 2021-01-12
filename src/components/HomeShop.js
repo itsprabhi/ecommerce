@@ -20,7 +20,7 @@ function Sidebar (props) {
     const keys = Object.keys(optionObject)
 
     return (
-        <div className = 'sidebar-shop sidebar'>
+        <div className = 'sidebar-shop sidebar home-sidebar'>
             <div className = 'sidebar-option'>
                     <div className = 'sidebar-option-header sidebar-search'>
                         <h3>Search Here</h3>

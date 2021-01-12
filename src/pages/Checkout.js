@@ -1,20 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
 import {placeOrder} from '../redux/actions/userActions'
+
+
+
 function Checkout(props) {
 
-// firstName(pin):'rajat'
-// userId(pin):'w0cY1o3bquM3QIVlCAincyDWP083'
-// orders(pin):[]
-// userEmail(pin):'rajatarora8854@gmail.com'
-// userHandle(pin):'rajat'
-// profilePicture(pin):'https://firebasestorage.googl…alt=media'
-// cart(pin):[]
-// lastName(pin):'rajat'
-// createdAt(pin):'2021-01-02T23:55:4
-
-
-
+    
     const [order, setOrder] = useState({
         firstName:'',
         lastName:'',
@@ -27,24 +19,34 @@ function Checkout(props) {
         postalCode: '',
         country: '',
         isPaid: 'true',
-        paymentType: 'paypal',
+        paymentType: '',
         taxPrice: '222',
         shippingPrice: '22',
-        products:[]
+        products:[],
+        orderBill:0,
+        taxes:0,
+        totalCost:0,
+        totalOrderProducts:0
     })
 
     
 
     useEffect(() => {
+
         const { 
-        firstName, 
-        lastName, 
-        userEmail, 
-        userId, 
-        userHandle 
+            firstName, 
+            lastName, 
+            userEmail, 
+            userId, 
+            userHandle 
         } = props.user.credentials
 
         const products = props.user.currentOrder.product
+        
+        // calculating our taxes, total items, and total costs
+        const totalOrderProducts = parseFloat(products.reduce(function (acc, obj) { return acc + obj.productQuantity; }, 0))
+        let grossCost = parseFloat((products.reduce(function (acc, obj) { return acc + obj.productPrice*obj.productQuantity; }, 0)).toFixed(2))
+        let taxes = parseFloat((13/100*grossCost).toFixed(2))
 
         setOrder({
             ...order,
@@ -53,20 +55,15 @@ function Checkout(props) {
             userEmail,
             userId,
             userHandle,
-            products
+            products,
+            orderBill:taxes+grossCost,
+            taxes:taxes,
+            totalCost:grossCost,
+            totalOrderProducts:totalOrderProducts
         })
-        // console.log(products)
+
     },[props.user])
 
-    // useEffect(() => {
-    //     console.log(props.user.currentOrder.product)
-    //     setOrderProducts([...props.user.currentOrder.product])
-    //     setOrder({
-    //         ...order,
-    //         products:[...orderProducts]
-    //     })
-    //     console.log(order)
-    // },[props.user.currentOrder])
 
     const onOrderSubmit = (e) => {
         e.preventDefault()
@@ -81,17 +78,37 @@ function Checkout(props) {
         })
     }
 
+    // order completion button
+    const isPaypal = order.paymentType === 'paypal' ? (<button className = 'buy-btn'>Complete by Paying</button>) : (<button className = 'buy-btn'>Complete my Order</button>)
 
     return (
         <div className = 'checkout-page'>
             <div className = 'order-details'>
+                <h2>Checkout</h2>
                 <h3>
                     Your order details
                 </h3>
-                <p>No. of item - {order.products.length}</p>
+                {order.products.map(product => {
+                    return (
+                        <>
+                            <div className = 'order-details-card'>
+                            <p>Product Name - {product.productName}</p>
+                            <p>Product Quantity - {product.productQuantity}</p>
+                            <h5>Total Price - {(product.productPrice * product.productQuantity).toFixed(2)}</h5>  
+                            </div>
+                        </>
+                    )
+                })}
+                <div className = 'order-details-Summary'>
+                    <h3>No. of item - {order.totalOrderProducts}</h3>
+                    <h3>Gross Total = ${order.totalCost}</h3>
+                    <h3>Taxes = ${order.taxes}</h3>
+                    <h3>Your Bill = ${order.orderBill}</h3>
+                </div>
             </div>
             <form>
                 <div className = 'checkout-form-name'>
+                    <h3>Step 1</h3>
                     <label for = 'firstname'>Enter Name</label><br/>
                     <input onChange = {onHandle} type = 'text' name = 'firstname' placeholder = 'First name'></input>
                     <input onChange = {onHandle} type = 'text' name = 'firstname' placeholder = 'Last name'></input>
@@ -103,6 +120,7 @@ function Checkout(props) {
                     <input onChange = {onHandle} type = 'text' name = 'phoneNumber' placeholder = 'Phone Number'></input>
                 </div>
                 <div className = 'checkout-form-adress'>
+                    <h3>Step 2</h3>
                     <label for = 'firstname'>Enter Adress</label><br/>
                     <input onChange = {onHandle} type = 'text' name = 'address' placeholder = 'Enter Address'></input><br/>
                     <input onChange = {onHandle} type = 'text' name = 'city' placeholder = 'Enter City'></input>
@@ -110,9 +128,18 @@ function Checkout(props) {
                     <input onChange = {onHandle} type = 'text' name = 'country' placeholder = 'Enter Country'></input>
                 </div>
                 <div className = 'checkout-form-payment'>
-
+                    <h3>Step 3</h3>
+                    <label for = 'paymentType'>Payment Method</label>< br />
+                        <div>
+                        
+                        <input type = 'radio' value = 'paypal' name= 'paymentType'  onChange = {onHandle}/>
+                        <label>Paypal</label><br />
+                        
+                        <input type = 'radio' value = 'cash on delivery' name = 'paymentType' onChange = {onHandle}/>
+                        <label>Cash on Delivery</label><br />
+                        </div>
+                    {isPaypal}
                 </div>
-                <button onClick = {onOrderSubmit}>Submit</button>
             </form>
         </div>
     )

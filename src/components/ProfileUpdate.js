@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
-import { LOADING_USER, SET_USER } from '../redux/types'
+import { LOADING_USER, SET_USER, SET_UI } from '../redux/types'
 
 import '../styles/user/user.css'
 
@@ -24,6 +24,7 @@ function ProfileUpdate(props) {
         axios.post('/user/upload-profile-picture', formData)
         .then(res => {
             dispatch({type: SET_USER})
+            dispatch({type: SET_UI})
             console.log(res.data)
         })
         .catch(err => {

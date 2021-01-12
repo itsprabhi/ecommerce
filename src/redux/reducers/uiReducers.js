@@ -1,7 +1,7 @@
 import { SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UI} from '../types'
 
 const initialState = {
-    loading: false,
+    loading: true,
     errors: null
 }
 

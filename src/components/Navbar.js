@@ -73,9 +73,9 @@ function Navbar(props) {
         <div className = 'navbar'>
             <div className = 'navbar-brand'>
                 <Link to = '/'>
-                    <b>
-                        E-commerce
-                    </b>
+                    <h4>
+                        BY Store
+                    </h4>
                 </Link>
             </div>
 

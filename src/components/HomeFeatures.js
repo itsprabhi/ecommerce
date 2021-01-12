@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
+import { faDollarSign, faCartPlus, faExchangeAlt } from '@fortawesome/free-solid-svg-icons'
 
 function HomeFeatures() {
     return (
@@ -21,18 +21,18 @@ function HomeFeatures() {
                         </div>
                         <div className = 'home-feature-card'>
                             <div className = 'home-feature-icon'>
-                                <FontAwesomeIcon icon = {faDollarSign} />
+                                <FontAwesomeIcon icon = {faCartPlus} />
                             </div>
                             <p>
-                                We make sure the products you get are 100% authentic
+                                Get your products within 3 days with our premium delivery service.
                             </p>
                         </div>
                         <div className = 'home-feature-card'>
                             <div className = 'home-feature-icon'>
-                                <FontAwesomeIcon icon = {faDollarSign} />
+                                <FontAwesomeIcon icon = {faExchangeAlt} />
                             </div>
                             <p>
-                                We make sure the products you get are 100% authentic
+                                Didn't liked what you bought? Return it within first 15 days.
                             </p>
                         </div>
                     </div>
