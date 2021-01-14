@@ -77,8 +77,9 @@ function App(props) {
     
     <div className="App">
       {whenLoading}
-      <div className = 'main-frame'>
       <Router>
+      <div className = 'main-frame'>
+      
         <Navbar/>
         <div className = 'app-frame'>
           <Switch>
@@ -99,9 +100,10 @@ function App(props) {
             <Route exact path = '/about' component = {About} />
           </Switch>
         </div>
-      </Router>
+      
       </div>
       <Footer />
+      </Router>
     </div>
   );
 }
