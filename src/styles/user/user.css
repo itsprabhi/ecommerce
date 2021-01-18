@@ -88,9 +88,20 @@
   position: fixed;
   top: 0;
   z-index: 10;
+  padding: 20px;
 }
 
 .profile-info-update form {
   background: #eee;
+  padding: 20px;
+  width: 70%;
+}
+
+.profile-info-update form * {
+  margin: 10px;
+}
+
+.profile-info-update form input {
+  padding: 10px;
 }
 /*# sourceMappingURL=user.css.map */

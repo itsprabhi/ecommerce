@@ -65,9 +65,9 @@ function Cart(props) {
                     </div>
                     <div className = 'cart-summary'>
                         <h3>
-                            Your Total is : {totalCost}
+                            Your Total is : ${totalCost}
                         </h3>
-                        <Link to = '/user/checkout' onClick = {() => props.addCurrentOrder(cart)}>
+                        <Link className = 'buy-btn' to = '/user/checkout' onClick = {() => props.addCurrentOrder(cart)}>
                             CheckOut
                         </Link>
                     </div>

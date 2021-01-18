@@ -26,13 +26,13 @@ const ProfileInfoUpdate = (props) => {
                 <input type = 'text' name = 'lastName'  className = 'text-name' placeholder = 'Enter your last name' onChange = {onHandleChange} /><br />
                 <label>Enter your Email</label>
                 <input type = 'email' name = 'userEmail' placeholder = 'Enter your email' onChange = {onHandleChange} /> <br />
-                <label>Enter your Address</label>
+                <label>Enter your Address</label><br />
                 <input onChange = {onHandleChange} type = 'text' name = 'address' placeholder = 'Enter Address'></input><br/>
                 <input onChange = {onHandleChange} type = 'text' name = 'city' placeholder = 'Enter City'></input>
                 <input onChange = {onHandleChange} type = 'text' name = 'postalCode' placeholder = 'Enter Postal Code'></input><br/>
                 <input onChange = {onHandleChange} type = 'text' name = 'country' placeholder = 'Enter Country'></input><br />
                 <input type = 'file' name = 'images' accept="image/jpeg, image/png" onChange = {handleChange}></input>
-                <button onClick = {() => handleSubmit()}>Submit</button>
+                <button onClick = {() => handleSubmit()}>Upload Image</button> <br />
                 <button onClick = {onProfileEdit}>Change</button>
             </form>
         </div>

@@ -256,6 +256,10 @@
   color: black;
 }
 
+.cart-card .add-btn {
+  background: #465775;
+}
+
 .card-heading {
   font-size: 10px;
   font-weight: bold;
@@ -272,6 +276,10 @@
   width: 40px;
   height: 40px;
   font-size: 20px;
+}
+
+.cart-card-delete button {
+  background: #EF6F6C;
 }
 
 .add-btn-card {
@@ -332,5 +340,22 @@
 .checkout-page form input[type="radio"] {
   width: auto;
   margin: 10px;
+}
+
+.cart-summary {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.cart-summary a {
+  text-decoration: none;
 }
 /*# sourceMappingURL=product.css.map */

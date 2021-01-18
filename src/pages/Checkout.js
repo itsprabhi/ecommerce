@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
 import {placeOrder} from '../redux/actions/userActions'
-
-
+import axios from 'axios'
+import {PayPalButton} from 'react-paypal-button-v2'
 
 function Checkout(props) {
 
@@ -18,7 +18,7 @@ function Checkout(props) {
         city: '',
         postalCode: '',
         country: '',
-        isPaid: 'true',
+        isPaid: false,
         paymentType: '',
         taxPrice: '222',
         shippingPrice: '22',
@@ -62,12 +62,34 @@ function Checkout(props) {
             totalOrderProducts:totalOrderProducts
         })
 
+
     },[props.user])
 
+    const [sdkReady, setSdkReady] = useState(false)
+
+    useEffect(() => {
+        const addPaypalScript = async () => {
+            const {data:clientId} = await axios.get('/config/paypal')
+            const script = document.createElement('script')
+            script.type = 'text/javascript'
+            script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
+            script.async = true
+            script.onload = () => {
+                setSdkReady(true)
+            }
+            document.body.appendChild(script)
+        }
+
+        if(!window.paypal){
+            addPaypalScript()
+        }else{
+            setSdkReady(true)
+        }
+    }, [])
 
     const onOrderSubmit = (e) => {
         e.preventDefault()
-        console.log(order)
+        // console.log(order)
         props.placeOrder(order)
     }
 
@@ -78,8 +100,34 @@ function Checkout(props) {
         })
     }
 
+    const onSelectingPaymentMethod = (e) => {
+        console.log(e.target.value)
+    }
+
+    const onPaypalPayment = (e) => {
+        e.preventDefault()
+        console.log(`Paypal mehtod launched`)
+        
+    }
+
+    const onOrderSuccess = (e) => {
+        
+        console.log(`on success is working`)
+        // onOrderSubmit()
+        setOrder({
+            ...order,
+            isPaid:true
+        })
+        // e.preventDefault()
+        // console.log(order)
+        props.placeOrder(order)
+    }
+
     // order completion button
-    const isPaypal = order.paymentType === 'paypal' ? (<button className = 'buy-btn'>Complete by Paying</button>) : (<button className = 'buy-btn'>Complete my Order</button>)
+    const isPaypal = order.paymentType === '' ? (<></>) : 
+    (order.paymentType !== 'paypal' ? 
+    (<button onClick = {onOrderSubmit} className = 'buy-btn'>Complete my order</button>) : 
+    (sdkReady ? <PayPalButton amount = {order.orderBill} onSuccess = {onOrderSuccess} /> : <p>loading..</p>))
 
     return (
         <div className = 'checkout-page'>
@@ -132,10 +180,10 @@ function Checkout(props) {
                     <label for = 'paymentType'>Payment Method</label>< br />
                         <div>
                         
-                        <input type = 'radio' value = 'paypal' name= 'paymentType'  onChange = {onHandle}/>
+                        <input type = 'radio' onClick = {onSelectingPaymentMethod} value = 'paypal' name= 'paymentType'  onChange = {onHandle}/>
                         <label>Paypal</label><br />
                         
-                        <input type = 'radio' value = 'cash on delivery' name = 'paymentType' onChange = {onHandle}/>
+                        <input type = 'radio' onClick = {onSelectingPaymentMethod} value = 'cash on delivery' name = 'paymentType' onChange = {onHandle}/>
                         <label>Cash on Delivery</label><br />
                         </div>
                     {isPaypal}

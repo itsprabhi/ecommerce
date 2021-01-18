@@ -70,7 +70,16 @@ $primary_color: #FF3B3F;
     position: fixed;
     top:0;
     z-index: 10;
+    padding: 20px;
     form{
         background: #eee;
+        padding: 20px;
+        width: 70%;
+        *{
+            margin:10px;
+        }
+        input{
+            padding: 10px;
+        }
     }
 }

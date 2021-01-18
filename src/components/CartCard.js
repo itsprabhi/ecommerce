@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 function CartCard(props) {
 
@@ -35,7 +37,9 @@ function CartCard(props) {
                 $ {(productPrice * productQuantity).toFixed(2) }
             </div>
             <div className = 'cart-card-delete'>
-                <button onClick = {() => props.deleteFromCart(props.product,productId)}>delete</button>
+                <button  className = 'buy-btn' onClick = {() => props.deleteFromCart(props.product,productId)}>
+                    <FontAwesomeIcon icon = {faTrash} />
+                </button>
             </div>
         </div>
     )
