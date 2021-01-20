@@ -36,13 +36,38 @@ function Product(props) {
     }
 
     const addProductQuantity = () => {
-
+        const newQuantity = product.productQuantity + 1
+        setProduct({
+            ...product,
+            productQuantity:newQuantity
+        })
+    }
+    const subtractProductQuantity = () => {
+        if(product.productQuantity === 0){
+            return
+        }
+        const newQuantity = product.productQuantity - 1
+        setProduct({
+            ...product,
+            productQuantity:newQuantity
+        })
     }
 
     let { name, price, productPictures, features, details} = product
 
     if (!typeof productPictures === Array || productPictures.length === 0){
         productPictures = ['https://firebasestorage.googleapis.com/v0/b/aus-ecommerce.appspot.com/o/defaultProfilePicture.jpg?alt=media']
+    }
+
+
+    const addToCheckOut = () => {
+        const newProduct = {
+            productName:product.name,
+            productPrice:product.price,
+            productQuantity: product.productQuantity,
+            productId: product.productId
+        }
+        props.addCurrentOrder([newProduct])
     }
 
     return (
@@ -65,17 +90,19 @@ function Product(props) {
                             <p>{features}</p>
                         </div>
                         <div className = 'product-counter'>
-                            <h5>Quantity : </h5> 
+                            <h5>Quantity: </h5> 
+                            <div>
                             <button onClick ={addProductQuantity} /*()=> dispatch(plus())*/ >
                                 +
                             </button>
-                            1
-                            <button onClick = {addProductQuantity} /*()=> dispatch(plus())*/ >
+                            {product.productQuantity}
+                            <button onClick = {subtractProductQuantity} /*()=> dispatch(plus())*/ >
                                 -
                             </button>
+                            </div>
                         </div>
                         <div className = 'product-buy'>
-                            <Link to = '/user/checkout' className = 'buy-btn' onClick = {() => props.addCurrentOrder([product])}>
+                            <Link to = '/user/checkout' className = 'buy-btn' onClick = {addToCheckOut}>
                                 Buy Now
                             </Link>
                             <button className = 'buy-btn-trans' onClick = {toCart}>

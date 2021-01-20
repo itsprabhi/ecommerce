@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;0,700;0,900;1,800;1,900&display=swap');
 
+
+$breakpoint-tablet: 800px;
+$breakpoint-phone: 400px;
+
 h1,h2,h3,h4{
     margin: 0;
     // font-family: 'Lato', sans-serif;
@@ -44,6 +48,7 @@ p{
     }
 
 }
+
 
 .footer{
     width:100%;
@@ -229,4 +234,83 @@ p{
     background: #eee;
     font-weight: bold;
     padding: 20px;
+}
+
+.messege-box{
+    position: fixed;
+    background: rgba(0,0,0,0.7);
+    width:100vw;
+    height: 100vh;
+    z-index:5;
+    color:black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.messege-box-content{
+    background:#eee;
+    width:50%;
+    padding: 20px;
+    text-align: center;
+}
+
+@media (max-width: $breakpoint-tablet) {
+    .main-frame{
+        .navbar{
+            width:100%;
+            transition: 1s;
+            z-index:6;
+            height: auto;
+            text-align: center;
+        }
+
+        // .navbar-on{
+        //     transform: translateX(100vw);
+        //     transition: 1s;
+        // }
+        .app-frame{
+            width:100%;
+        }
+        display: block;
+    }
+    h1{
+        font-size: 40px;
+    }
+    h2{
+        font-size:35px;
+    }
+    h3{
+        font-size:28px;
+    }
+    h4{
+        font-size:20px;
+    }
+    h5{
+        font-size:17px;
+    }
+    p{
+        font-size: 14px;
+    }
+    .product-page-container{
+        width:100%;
+        
+    }
+    .heading-banner{
+        width:90%;
+    }
+
+    .footer-txt-content{
+        display: block;
+        div{
+            width: 100%;
+        }
+    }
+    .home-feature-container{
+        display: block;
+    }
+    .home-feature-card{
+        display: block;
+    }
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Link from 'react-router-dom/Link'
 import '../styles/navbar/navbar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,6 +11,12 @@ import {connect} from 'react-redux'
 
 
 function Navbar(props) {
+
+    const [navToggle,setNavToggle] = useState(false)
+
+    const onNavToggle = () => {
+        setNavToggle(!navToggle)
+    }
 
     const onLogOut = () => {
         store.dispatch(logoutUser())
@@ -67,16 +73,18 @@ function Navbar(props) {
         </div>
     )
 
+    const navListClasses = navToggle ? 'navbar navbar-on' : 'navbar'
 
     return (
         
-        <div className = 'navbar'>
+        <div className = {navListClasses}>
             <div className = 'navbar-brand'>
                 <Link to = '/'>
                     <h4>
                         BY Store
                     </h4>
                 </Link>
+                <span onClick = {onNavToggle} className = 'toggle-btn'></span>
             </div>
 
             

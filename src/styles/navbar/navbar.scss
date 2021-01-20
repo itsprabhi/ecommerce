@@ -3,6 +3,8 @@
 $primary_color: #EF6F6C;
 
 
+$breakpoint-tablet: 800px;
+$breakpoint-phone: 400px;
 
 .navbar{
     background:$primary_color;
@@ -81,4 +83,22 @@ $primary_color: #EF6F6C;
         margin: 5px;
     }
     
+}
+
+.toggle-btn{
+    width:20px;
+    height: 10px;
+    background: #fff;
+    display: none;
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .navbar-brand{
+    display: flex;
+    justify-content: space-between;
+  }
+  .navbar-list{
+      display: none;
+  }
+
 }

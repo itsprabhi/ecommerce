@@ -13,17 +13,26 @@
   width: 50%;
 }
 
+@media (max-width: 800px) {
+  .profile-page {
+    display: block;
+  }
+  .profile-page .profile {
+    width: 90%;
+    padding: 10px;
+  }
+  .profile-page .order-list-container {
+    width: 80%;
+  }
+}
+
 .profile {
   margin: 30px;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
 }
 
 .profile div {
   background: #eee;
-  width: 100%;
-  padding: 10px;
+  width: 90%;
   border-radius: 20px;
 }
 
@@ -34,6 +43,7 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin: 10px;
 }
 
 .profile .profile-img img {
@@ -42,6 +52,7 @@
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
+  margin: 20px;
 }
 
 .profile .buy-btn {
@@ -74,7 +85,7 @@
 }
 
 .order-list-container .order-list-header {
-  background: #FF3B3F;
+  background: #EF6F6C;
 }
 
 .order-list-container .order-card {

@@ -288,4 +288,82 @@ p {
   font-weight: bold;
   padding: 20px;
 }
+
+.messege-box {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.messege-box-content {
+  background: #eee;
+  width: 50%;
+  padding: 20px;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .main-frame {
+    display: block;
+  }
+  .main-frame .navbar {
+    width: 100%;
+    -webkit-transition: 1s;
+    transition: 1s;
+    z-index: 6;
+    height: auto;
+    text-align: center;
+  }
+  .main-frame .app-frame {
+    width: 100%;
+  }
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 35px;
+  }
+  h3 {
+    font-size: 28px;
+  }
+  h4 {
+    font-size: 20px;
+  }
+  h5 {
+    font-size: 17px;
+  }
+  p {
+    font-size: 14px;
+  }
+  .product-page-container {
+    width: 100%;
+  }
+  .heading-banner {
+    width: 90%;
+  }
+  .footer-txt-content {
+    display: block;
+  }
+  .footer-txt-content div {
+    width: 100%;
+  }
+  .home-feature-container {
+    display: block;
+  }
+  .home-feature-card {
+    display: block;
+  }
+}
 /*# sourceMappingURL=global.css.map */

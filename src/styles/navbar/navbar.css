@@ -78,4 +78,25 @@
   width: 100%;
   margin: 5px;
 }
+
+.toggle-btn {
+  width: 20px;
+  height: 10px;
+  background: #fff;
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .navbar-brand {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .navbar-list {
+    display: none;
+  }
+}
 /*# sourceMappingURL=navbar.css.map */

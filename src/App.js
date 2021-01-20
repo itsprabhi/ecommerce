@@ -10,6 +10,7 @@ import UserRoute from './utils/userRoute';
 // COMPONENTS
 import Navbar from './components/Navbar';
 import LoadingBanner from './components/LoadingBanner'
+import MessegeBox from './components/MessegeBox'
 
 // Pages
 import Home from './pages/Home';
@@ -71,11 +72,12 @@ function App(props) {
   },[])
 
   const whenLoading = props.isLoading ? <LoadingBanner /> : (<></>)
-
+  const isError = typeof props.errors === 'string' ? <MessegeBox errors = {props.errors} /> : (<></>)
 
   return (
     
     <div className="App">
+      {isError}
       {whenLoading}
       <Router>
       <div className = 'main-frame'>
@@ -110,7 +112,8 @@ function App(props) {
 
 const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated,
-  isLoading: state.ui.loading
+  isLoading: state.ui.loading,
+  errors: state.ui.errors
 })
 
 export default connect(mapStateToProps)(App);

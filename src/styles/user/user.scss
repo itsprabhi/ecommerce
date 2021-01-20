@@ -1,4 +1,7 @@
-$primary_color: #FF3B3F;
+$primary_color: #EF6F6C;
+
+$breakpoint-tablet: 800px;
+$breakpoint-phone: 400px;
 
 .profile-page{
     width: 100%;
@@ -11,27 +14,42 @@ $primary_color: #FF3B3F;
     }
 }
 
+@media (max-width: $breakpoint-tablet) {
+    .profile-page{
+        display: block;
+
+        .profile {
+            width: 90%;
+            padding: 10px;
+        }
+        .order-list-container{
+            width:80%;
+        }
+    }
+    
+}
+
 .profile{
     div{
         background:#eee;
-        width: 100%;
-        padding: 10px;
+        width: 90%;
         border-radius: 20px;
     }
     
     
     margin:30px;
-    position: sticky;
-    top:0;
+    
     .profile-img{
         display: flex;
         justify-content: space-between;
+        margin: 10px;
     }
     .profile-img img{
         width: 80px;
         height: 80px;
         object-fit: cover;
         border-radius: 50%;
+        margin: 20px;
     }
     .buy-btn{
         font-size: 12px;
