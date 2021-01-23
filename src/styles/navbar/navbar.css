@@ -79,14 +79,14 @@
   margin: 5px;
 }
 
-.toggle-btn {
-  width: 20px;
-  height: 10px;
-  background: #fff;
-  display: none;
-}
-
 @media (max-width: 800px) {
+  .navbar {
+    position: relative;
+  }
+  .navbar div {
+    width: 90%;
+    margin: auto;
+  }
   .navbar-brand {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -94,9 +94,27 @@
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .toggle-btn {
+    font-size: 25px;
   }
   .navbar-list {
-    display: none;
+    display: block;
+    position: absolute;
+    background: #EF6F6C;
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+  .navbar-on {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+    -webkit-transition: 1s;
+    transition: 1s;
   }
 }
 /*# sourceMappingURL=navbar.css.map */

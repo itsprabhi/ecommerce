@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Link from 'react-router-dom/Link'
 import '../styles/navbar/navbar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faHome, faShoppingBag, faIdBadge, faShoppingBasket, faPencilAlt } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faHome, faShoppingBag, faIdBadge, faShoppingBasket, faPencilAlt, faBars  } from '@fortawesome/free-solid-svg-icons'
 import {logoutUser} from '../redux/actions/userActions'
 import store from '../redux/store'
 import {connect} from 'react-redux'
@@ -16,6 +16,7 @@ function Navbar(props) {
 
     const onNavToggle = () => {
         setNavToggle(!navToggle)
+        console.log(navToggle)
     }
 
     const onLogOut = () => {
@@ -24,7 +25,7 @@ function Navbar(props) {
         
     const adminBtn = props.isAdmin ? (
         <Link to = '/admin'>
-            <li>
+            <li onClick = {onNavToggle}>
             <FontAwesomeIcon icon = {faPencilAlt} />
                 Admin
             </li>
@@ -34,19 +35,19 @@ function Navbar(props) {
     const profileMenu = props.auth ? (
         <ul>
         <Link to = '/user'>
-            <li>
+            <li onClick = {onNavToggle}>
             <FontAwesomeIcon icon = {faUser} />
                 Profile
             </li>
         </Link>
         <Link to = '/user/cart'>
-            <li>
+            <li onClick = {onNavToggle}>
             <FontAwesomeIcon icon = {faShoppingBasket} />
                 Cart
             </li>
         </Link>
         {adminBtn}
-        <li>
+        <li onClick = {onNavToggle}>
             <button onClick={onLogOut} className = 'nav-btn'>Log Out</button>
         </li>
     </ul>
@@ -57,7 +58,7 @@ function Navbar(props) {
                     Login
                 
             </Link></li> */}
-            <li><Link to = '/login'>
+            <li onClick = {onNavToggle}><Link to = '/login'>
             <FontAwesomeIcon icon = {faUser} />
                     Login / SignUp
             </Link></li>
@@ -73,38 +74,38 @@ function Navbar(props) {
         </div>
     )
 
-    const navListClasses = navToggle ? 'navbar navbar-on' : 'navbar'
+    const navListClasses = navToggle ? 'navbar-list navbar-on' : 'navbar-list'
 
     return (
         
-        <div className = {navListClasses}>
+        <div className = 'navbar'>
             <div className = 'navbar-brand'>
                 <Link to = '/'>
-                    <h4>
+                    <h4 onClick = {onNavToggle}>
                         BY Store
                     </h4>
                 </Link>
-                <span onClick = {onNavToggle} className = 'toggle-btn'></span>
+                <FontAwesomeIcon className = 'toggle-btn' icon = {faBars} onClick = {onNavToggle} />
             </div>
 
             
 
-            <div className = 'navbar-list'>
+            <div className = {navListClasses}>
                 <ul>
                     <Link to = '/'>
-                        <li>
+                        <li onClick = {onNavToggle}> 
                             <FontAwesomeIcon icon = {faHome} />
                             Home
                         </li>
                     </Link>
-                    <Link to = '/shop'>
-                        <li>
+                    <Link to = '/shop' >
+                        <li onClick = {onNavToggle}>
                             <FontAwesomeIcon icon = {faShoppingBag} />
                             Shop
                         </li>
                     </Link>
                     <Link to = '/about'>
-                        <li>
+                        <li onClick = {onNavToggle}>
                             <FontAwesomeIcon icon = {faIdBadge} />
                             About
                         </li>

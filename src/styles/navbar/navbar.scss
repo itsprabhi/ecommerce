@@ -85,20 +85,35 @@ $breakpoint-phone: 400px;
     
 }
 
-.toggle-btn{
-    width:20px;
-    height: 10px;
-    background: #fff;
-    display: none;
-}
-
 @media (max-width: $breakpoint-tablet) {
-  .navbar-brand{
-    display: flex;
-    justify-content: space-between;
-  }
-  .navbar-list{
-      display: none;
-  }
+    .navbar{
+        position: relative;
+        div{
+            width: 90%;
+            margin: auto;
+        }
+    }
+    .navbar-brand{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .toggle-btn{
+        font-size: 25px;
+    }
+
+    .navbar-list{
+        display: block;
+        position: absolute;
+        background:#EF6F6C;
+        transform: translateX(-100%);
+        transition: 1s;
+    }
+
+    .navbar-on{
+        transform: translateX(0%);
+        transition: 1s;
+    }
 
 }
