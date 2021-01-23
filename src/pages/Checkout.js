@@ -101,18 +101,18 @@ function Checkout(props) {
     }
 
     const onSelectingPaymentMethod = (e) => {
-        console.log(e.target.value)
+        // console.log(e.target.value)
     }
 
     const onPaypalPayment = (e) => {
         e.preventDefault()
-        console.log(`Paypal mehtod launched`)
+        // console.log(`Paypal mehtod launched`)
         
     }
 
     const onOrderSuccess = (e) => {
         
-        console.log(`on success is working`)
+        // console.log(`on success is working`)
         // onOrderSubmit()
         setOrder({
             ...order,

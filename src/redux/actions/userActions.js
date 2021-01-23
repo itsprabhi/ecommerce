@@ -3,12 +3,11 @@ import axios from 'axios'
 
 export const loginUser = (userData, history) => (dispatch) => {
     dispatch({type: LOADING_UI})
-    axios.post('/login', userData)
+    axios.post('/login', userData, {withCredentials:true})
     .then(res => {
         const token = {idToken: res.data.token}
-        axios.post('/sessionLogin', token)
+        axios.post('/sessionLogin', token, {withCredentials:true})
         .then(res => {
-            console.log(res.data);
             dispatch({type: SET_AUTHENTICATED})
         dispatch(getUserData())
         dispatch({ type: CLEAR_ERRORS })
@@ -29,8 +28,8 @@ export const loginUser = (userData, history) => (dispatch) => {
 
 export const logoutUser = () => (dispatch) => {
     dispatch({type: LOADING_UI})
-    axios.get('/logout').then(res => {
-        console.log(res.data)
+    axios.get('/logout',{withCredentials:true}).then(res => {
+        return res.data
     }) 
     .then(() => {
         delete axios.defaults.headers.common['Authorization']
@@ -42,13 +41,11 @@ export const logoutUser = () => (dispatch) => {
 
 export const signupUser = (newUser, history) => (dispatch) => {
     dispatch({type: LOADING_UI})
-    axios.post('/signup', newUser)
+    axios.post('/signup', newUser,{withCredentials:true})
     .then(res => {
         const token = {idToken: res.data.token}
-        console.log(token)
-        axios.post('/sessionLogin', token)
+        axios.post('/sessionLogin', token,{withCredentials:true})
         .then(res => {
-            console.log(res.data);
             dispatch({type: SET_AUTHENTICATED})
         dispatch(getUserData())
         dispatch({ type: CLEAR_ERRORS })
@@ -76,7 +73,7 @@ export const addCurrentOrder = (products) => (dispatch) => {
 
 export const getUserData = () => (dispatch) => {
     dispatch({type:LOADING_USER})
-    axios.get('/user')
+    axios.get('/user',{withCredentials:true})
     .then(res => {
         dispatch({ 
             type: SET_USER,
@@ -97,9 +94,8 @@ export const getUserData = () => (dispatch) => {
 export const addToCart = (product,id) => (dispatch) =>{
     // console.log(`this function is working`)
     dispatch({type: LOADING_UI})
-    axios.post(`/product/${id}/addToCart`, product)
+    axios.post(`/product/${id}/addToCart`, product,{withCredentials:true})
     .then(data => {
-        console.log(data.data)
         dispatch(getUserData())
     })
     .catch(err => {
@@ -107,16 +103,14 @@ export const addToCart = (product,id) => (dispatch) =>{
             type: SET_ERRORS,
             payload: err.response.data.error
         })
-        console.log(err.response.data)
     })
 }
 
 export const deleteFromCart = (product,id) => (dispatch) =>{
     dispatch({type: LOADING_UI})
     // console.log(`this function is working`)
-    axios.delete(`/product/${id}/deleteFromCart`, product)
+    axios.delete(`/product/${id}/deleteFromCart`, product,{withCredentials:true})
     .then(data => {
-        console.log(data.data)
         dispatch(getUserData())
     })
     .catch(err => {
@@ -124,15 +118,14 @@ export const deleteFromCart = (product,id) => (dispatch) =>{
             type: SET_ERRORS,
             payload: err.response.data.error
         })
-        console.log(err.response.data)
+
     })
 }
 
 export const placeOrder = (order) => (dispatch) => {
     dispatch({type: LOADING_UI})
-    axios.post(`/user/order`, order)
+    axios.post(`/user/order`, order,{withCredentials:true})
     .then(data => {
-        console.log(data.data)
         dispatch(getUserData())
     })
     .catch(err => console.log(err))

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import './styles/global/global.css';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
+
 
 // UTILS
 import AuthRoute from './utils/authRoute';
@@ -39,22 +41,29 @@ import AdminOrders from './pages/AdminOrders';
 import AdminProducts from './pages/AdminProducts';
 import Checkout from './pages/Checkout';
 
-// AUTHENTICATE USER
 
+
+axios.defaults.baseURL = 'https://us-central1-aus-ecommerce.cloudfunctions.net/api'
+// axios.defaults.withCredentialsentials = true
+// axios.defaults.headers = {'Content-Type' : 'application/json'}
+const cookies = new Cookies();
 
 
 function App(props) {
+
 
   
   useEffect(() => {
     let csrfToken;
     let userClaims
-    axios.get('/checkUser')
+    axios.get('/checkUser', {withCredentials:true})
     .then(data => {
-      console.log(data.data)
+      // console.log(data)
+      // console.log(data.data)
       csrfToken = data.data.csrfToken
       userClaims = data.data.decodedClaims
       axios.defaults.headers['X-CSRF-Token'] = csrfToken
+      cookies.set('XSRFTOKEN', csrfToken);
     })
     .then(() => {
       if(userClaims){

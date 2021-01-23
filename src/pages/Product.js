@@ -25,7 +25,7 @@ function Product(props) {
     
     useEffect(() => {
         const el = props.products.filter(pro => pro.id === id)
-        console.log(el[0])
+        // console.log(el[0])
         setProduct({...product, ...el[0]})
     }, [props.products])
 

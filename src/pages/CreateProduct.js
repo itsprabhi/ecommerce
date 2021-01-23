@@ -33,7 +33,7 @@ function CreateProduct() {
         })
         axios.post('/productPictures', formData)
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             const images = res.data.imageUrls
             setProduct({
                 ...product,
@@ -48,14 +48,14 @@ function CreateProduct() {
             ...product,
             [e.target.name]: e.target.value
         })
-        console.log(product)
+        // console.log(product)
     }
 
     const onsubmit = (e) => {
         e.preventDefault()
         axios.post('/createProduct', product)
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
         })
         .catch(err => console.log(err))
     }
