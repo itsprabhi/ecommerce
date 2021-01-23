@@ -1,5 +1,5 @@
-$breakpoint-tablet: 800px;
-$breakpoint-phone: 400px;
+$breakpoint-tablet: 900px;
+$breakpoint-phone: 450px;
 
 .home-shop,.shop{
     display: flex;
@@ -349,9 +349,12 @@ $breakpoint-phone: 400px;
 
     .home-shop,.shop{
         display: block;
+
+
         
         .shop-section{
             width:100%;
+            grid-template-columns: auto auto;
         }
         .sidebar-shop{
             width:100%;
@@ -372,5 +375,16 @@ $breakpoint-phone: 400px;
         //     object-fit: cover;
         //     border-radius: 20px;
         // }
+    }
+}
+
+
+@media (max-width: $breakpoint-phone) {
+    
+    .home-shop,.shop{
+        .shop-section{
+            width:100%;
+            grid-template-columns: auto;
+        }
     }
 }
