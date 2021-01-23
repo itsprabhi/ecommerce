@@ -40,7 +40,7 @@ const ProfileInfoUpdate = (props) => {
 }
 
 function ProfileUpdate(props) {
-    console.log(props.user.credentials)
+    // console.log(props.user.credentials)
     // deconstructing credentials
     const { userName, userHandle, profilePicture, userEmail} = props.user.credentials
     const {loading} = props.user
@@ -55,19 +55,19 @@ function ProfileUpdate(props) {
         dispatch({type:LOADING_USER})
         let formData = new FormData()
         formData.append('image', data[0])
-        console.log('btn hit')
+        // console.log('btn hit')
         axios.post('/user/upload-profile-picture', formData)
         .then(res => {
             dispatch({type: SET_USER})
             dispatch({type: SET_UI})
-            console.log(res.data)
+            // console.log(res.data)
         })
         .catch(err => {
             console.log(err, err.data)
         })
     }
     useEffect(() => {
-        console.log(data)
+        // console.log(data)
     }, [data])
 
     const onProfileEdit = () => {

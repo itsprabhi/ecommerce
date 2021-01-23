@@ -7,7 +7,7 @@ function MessegeBox(props) {
 
     useEffect(() => {
         setErrors(props.errors)
-        console.log(props.errors)
+        // console.log(props.errors)
     }, [props.errors])
 
     return (

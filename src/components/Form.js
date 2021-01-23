@@ -8,7 +8,7 @@ function Form() {
     let text
     const getText = (e) => {
         text = e.target.value
-        console.log(text)
+        // console.log(text)
     }
     return (
         <div>

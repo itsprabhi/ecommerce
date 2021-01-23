@@ -19,14 +19,14 @@ function ImageUpload() {
         })
         axios.post('/productPictures', formData)
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
         })
         .catch(err => console.log(err))
     }
 
 
     useEffect(() => {
-        console.log(data)
+        // console.log(data)
     }, [data])
 
 

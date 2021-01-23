@@ -29,7 +29,7 @@ function ProductUpdate(props) {
         axios.get(`/product/${id}`)
         .then(data => {
             let pro = data.data
-            console.log(pro)
+            // console.log(pro)
             setProduct({
                 ...product,
                 ...data.data
@@ -46,7 +46,7 @@ function ProductUpdate(props) {
             ...product,
             [e.target.name]: e.target.value
         })
-        console.log(product)
+        // console.log(product)
     }
 
     const [data, setData] = useState([])
@@ -63,7 +63,7 @@ function ProductUpdate(props) {
         })
         axios.post('/productPictures', formData)
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             const images = res.data.imageUrls
             setProduct({
                 ...product,
@@ -77,7 +77,7 @@ function ProductUpdate(props) {
         e.preventDefault()
         axios.post('/createProduct', product)
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
         })
         .catch(err => console.log(err))
     }

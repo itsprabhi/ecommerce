@@ -17,7 +17,7 @@ function LoginForm(props) {
     })
 
     useEffect(() => {
-        console.log(props.ui)
+        // console.log(props.ui)
         if(props.ui.errors){
             setUser({
                 ...user,
