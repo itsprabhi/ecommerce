@@ -22,6 +22,7 @@ function ProductUpdate(props) {
         productType: "",
         productCategory:'',
         productBrand:'',
+        category:''
     })
 
     useEffect(() => {
@@ -46,7 +47,7 @@ function ProductUpdate(props) {
             ...product,
             [e.target.name]: e.target.value
         })
-        // console.log(product)
+        console.log(product)
     }
 
     const [data, setData] = useState([])

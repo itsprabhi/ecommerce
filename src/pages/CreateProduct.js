@@ -10,7 +10,7 @@ function CreateProduct() {
         productName: '',
         productPrice: null,
         productDetails: '',
-        productCategory:'',
+        category:'',
         productBrand:'',
         productFeatures: '',
         productSale: null,
@@ -53,7 +53,7 @@ function CreateProduct() {
 
     const onsubmit = (e) => {
         e.preventDefault()
-        axios.post('/createProduct', product)
+        axios.post('/createProduct', product, {withCredentials:true})
         .then(res => {
             // console.log(res.data)
         })
@@ -89,10 +89,11 @@ function CreateProduct() {
             <input type = 'text' name = 'productPrice'  onChange = {onChange}></input><br />
             <label for = 'productDetails'>Product Details</label><br />
             <textarea className = 'product-create-detail' name = 'productDetails'  onChange = {onChange}></textarea><br />
-            <label for = 'productFeatures'>Product Details</label><br />
+            <label for = 'productFeatures'>Product Features</label><br />
             <textarea className = 'product-create-detail' type = 'text' name = 'productFeatures'  onChange = {onChange}></textarea><br />
             <label for = 'producType'>Product Tyoe</label><br />
-            <select id="product-type" name="productCategory"  onChange = {onChange}>
+            <select id="product-type" name="category"  onChange = {onChange}>
+            <option value="none">Select Category</option>
                 <option value="airconditioners">Air Conditioner</option>
                 <option value="cameras">Cameras</option>
                 <option value="smartphones">Phones</option>

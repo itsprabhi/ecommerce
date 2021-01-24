@@ -15,7 +15,8 @@ export const getProducts = () => (dispatch) => {
 
 export const deleteProduct = (id) => (dispatch) => {
     dispatch({type:LOADING_UI})
-    axios.post(`/product/${id}/delete`,{withCredentials:true})
+    axios.defaults.withCredentials = true;
+    axios.post(`/product/${id}/delete`)
     .then(data => {
         dispatch({type:SET_UI})
         // console.log(data.data)

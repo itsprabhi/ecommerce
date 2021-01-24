@@ -1,8 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;0,700;0,900;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&display=swap");
+a {
+  text-decoration: none;
+}
+
 h1, h2, h3, h4 {
   margin: 0;
-  font-family: 'Bodoni Moda', serif;
+  font-family: 'Merriweather', serif;
 }
 
 h5, h6, p {
@@ -139,13 +143,48 @@ p {
   margin: auto;
 }
 
+.home-grid-box {
+  background-blend-mode: normal;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.home-grid-box h3, .home-grid-box h4, .home-grid-box h5 {
+  text-decoration: none;
+  z-index: 3;
+  position: relative;
+  margin: 20px;
+}
+
+.home-grid-box h3 a, .home-grid-box h4 a, .home-grid-box h5 a {
+  color: white;
+}
+
+.home-grid-box-filter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
 .home-grid-box-one {
   -ms-grid-row: 1;
   -ms-grid-row-span: 2;
   -ms-grid-column: 1;
   grid-area: box-one;
   height: 62vh;
-  background: #59C9A5;
+  background-image: url("../../imgs/pic4.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.home-grid-box-one .home-grid-box-filter {
+  background: #59c9a581;
 }
 
 .home-grid-box-two {
@@ -153,7 +192,13 @@ p {
   -ms-grid-column: 2;
   grid-area: box-two;
   height: 30vh;
-  background: #465775;
+  background-image: url("../../imgs/pic2.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.home-grid-box-two .home-grid-box-filter {
+  background: #4657759f;
 }
 
 .home-grid-box-three {
@@ -161,7 +206,13 @@ p {
   -ms-grid-column: 2;
   grid-area: box-three;
   height: 30vh;
-  background: #EF6F6C;
+  background-image: url("../../imgs/pic3.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.home-grid-box-three .home-grid-box-filter {
+  background: #ef6e6ca2;
 }
 
 .home-grid {
@@ -176,6 +227,12 @@ p {
 
 .home-grid div {
   border-radius: 20px;
+}
+
+@media (max-width: 800px) {
+  .home-grid {
+        grid-template-areas: 'box-one' 'box-two' 'box-three';
+  }
 }
 
 .home-feature-text {
