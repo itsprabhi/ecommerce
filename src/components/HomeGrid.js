@@ -8,7 +8,7 @@ function HomeGrid() {
                 <div className = 'home-grid-box home-grid-box-one'>
                     <div className = 'home-grid-box-filter'></div>
                     <h4>
-                        <Link to = ''>
+                        <Link to = '/shop/category/airconditioners'>
                         See our special list of the best air conditioners in the market.
                         </Link>
                     </h4>
@@ -16,7 +16,7 @@ function HomeGrid() {
                 <div className = 'home-grid-box home-grid-box-two'>
                 <div className = 'home-grid-box-filter'></div>
                     <h4>
-                        <Link to = ''>
+                        <Link to = '/shop/category/cameras'>
                             Check out the collection of cameras that will change the game for you.
                         </Link>
                     </h4>
@@ -24,7 +24,7 @@ function HomeGrid() {
                 <div className = 'home-grid-box home-grid-box-three'>
                 <div className = 'home-grid-box-filter'></div>
                     <h4>
-                        <Link to = ''>
+                        <Link to = '/shop/category/smartphones'>
                     Stay ahead of others with our collection of the latest smartphones.
                         </Link>
                     </h4>
